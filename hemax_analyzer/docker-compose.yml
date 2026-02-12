@@ -1,0 +1,181 @@
+# HEMAX — аналітичні сервіси (docker-compose)
+# ============================================
+# Запускає 5 Python-сервісів медичного аналізу у спільній мережі.
+# Backend (.NET) + UI (Vue) + MS SQL Server запускаються окремо — їх тут НЕМАЄ.
+#
+# Порти (host:container) — звірено з Dockerfile EXPOSE та uvicorn --port:
+#   CBC    8001:8100   (rule-based)             health: /health
+#   CHEM   8101:8101   (rule-based)             health: /chem/health
+#   RISK   8002:8002   (multi-task NN, 6 ризиків) health: /risk/healthz
+#   NEURO  8003:8003   (multi-task NN, mental)    health: /neuro/healthz
+#   DERMA  8004:8004   (multimodal, 7 класів)     health: /derma/healthz
+#
+# Build:   docker compose build
+# Run:     docker compose up -d
+# Stop:    docker compose down
+# Logs:    docker compose logs -f [service]
+
+services:
+  # =========================================================================
+  # CBC — Complete Blood Count (rule-based)
+  # Dockerfile EXPOSE 8100, uvicorn --port 8100 → host 8001
+  # =========================================================================
+  cbc-api:
+    build:
+      context: ./cbc/engine
+      dockerfile: Dockerfile
+    image: hemax-cbc-api:latest
+    container_name: hemax-cbc
+    restart: unless-stopped
+    ports:
+      - "8001:8100"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - hemax-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+
+  # =========================================================================
+  # CHEM — Chemistry / Metabolic Panel (rule-based)
+  # Dockerfile EXPOSE 8101, uvicorn chem_api.app:app --port 8101
+  # =========================================================================
+  chem-api:
+    build:
+      context: ./chem/engine
+      dockerfile: Dockerfile
+    image: hemax-chem-api:latest
+    container_name: hemax-chem
+    restart: unless-stopped
+    ports:
+      - "8101:8101"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - hemax-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8101/chem/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+
+  # =========================================================================
+  # RISK — multi-task NN (PyTorch), 6 chronic disease risks
+  # Dockerfile EXPOSE 8002. Weights монтуються як volume (поза образом).
+  # =========================================================================
+  risk-api:
+    build:
+      context: ./hemax_risk
+      dockerfile: Dockerfile
+    image: hemax-risk-api:latest
+    container_name: hemax-risk
+    restart: unless-stopped
+    ports:
+      - "8002:8002"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    volumes:
+      # Dockerfile: WORKDIR /app, COPY risk_api/ → /app/risk_api/
+      # Натреновані ваги (model.pt) очікуються у risk_api/weights/
+      - ./hemax_risk/risk_api/weights:/app/risk_api/weights:ro
+    networks:
+      - hemax-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8002/risk/healthz')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  # =========================================================================
+  # NEURO — multi-task NN (PyTorch), mental health + suicidal_ideation safety
+  # Dockerfile EXPOSE 8003. Weights монтуються як volume.
+  # УВАГА: Dockerfile треба виправити (прибрати COPY engine/) — див. нижче.
+  # =========================================================================
+  neuro-api:
+    build:
+      context: neuro
+      dockerfile: Dockerfile
+    image: hemax-neuro-api:latest
+    container_name: hemax-neuro
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./neuro/neuro_api/weights:/app/neuro_api/weights:ro
+    networks:
+      - hemax-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8003/neuro/healthz')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  # =========================================================================
+  # DERMA — multimodal skin lesion classifier (7 класів)
+  # Dockerfile EXPOSE 8004.
+  # ВИПРАВЛЕНО: модель (model.pt + calibration_params.json) лежить у
+  #   derma_api/weights/ і вже копіюється в образ через COPY derma_api/.
+  #   → DERMA_MODEL_DIR вказує туди; model_out volume НЕ потрібен.
+  # =========================================================================
+  derma-api:
+    build:
+      context: derma     # ← переконайся, що папка зветься саме так
+      dockerfile: Dockerfile
+    image: hemax-derma-api:latest
+    container_name: hemax-derma
+    restart: unless-stopped
+    ports:
+      - "8004:8004"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - DERMA_MODEL_DIR=/app/derma_api/weights
+    networks:
+      - hemax-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8004/derma/healthz')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2G
+
+networks:
+  hemax-net:
+    driver: bridge
+    name: hemax-network
