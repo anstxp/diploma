@@ -1,0 +1,112 @@
+# ============================================================================
+#  diploma_git — .gitignore (монорепо: hemax_analyzer + hemax_backend + hemax-ui)
+# ============================================================================
+
+# ─── ОС / редактори ─────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+._*
+__MACOSX/
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+*.iml
+
+# ─── Python (hemax_analyzer: cbc, chem, risk, neuro, derma, scripts) ─────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+# віртуальні оточення
+venv/
+.venv/
+env/
+ENV/
+
+# ─── ML: моделі, ваги, дані, згенеровані артефакти (НЕ комітимо) ─────────────
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.h5
+*.pkl
+*.joblib
+*.parquet
+*.npy
+*.npz
+# натреновані ваги / тренувальні виходи
+**/weights/
+model_out/
+model_out_*/
+# згенеровані графіки та звіти аналізу
+**/analysis/figures/
+**/analysis/reports/
+# датасети (сирий NHANES ~696МБ, HAM10000 тощо)
+**/data/
+**/data_processed/
+# Сирий NHANES лежить у теці csv/ та joined/ всередині hemax_analyzer.
+# Якщо у тебе інші назви тек із даними — додай їх сюди:
+hemax_analyzer/csv/
+hemax_analyzer/joined/
+
+# ─── .NET (hemax_backend: ASP.NET Core Clean Architecture) ───────────────────
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+.vs/
+*.user
+*.suo
+*.userosscache
+[Tt]est[Rr]esults/
+artifacts/
+# рантайм-артефакти Web (завантаження користувачів, логи)
+HEMAX.Web/uploads/
+**/logs/
+*.log
+
+# ─── Node / Vue (hemax-ui) ───────────────────────────────────────────────────
+node_modules/
+dist/
+.nuxt/
+.output/
+coverage/
+*.local
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── СЕКРЕТИ — НІКОЛИ не комітити (особливо у backend!) ───────────────────────
+# Azure Blob keys, рядки підключення MSSQL, AES-ключі, SMTP — лишаються локально.
+.env
+.env.*
+*.env
+appsettings.*.json
+!appsettings.json
+!appsettings.Example.json
+secrets.json
+*.pem
+*.key
+*.pfx
+*.zip
+*.bak
+*.bak.*
+appsettings*.bak*
+appsettings.json.bak*
+make_history.py
+*.bak
+*.bak.*
+appsettings*.bak*
+*.bak*
+**/bin/
+**/obj/
