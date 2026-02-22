@@ -1,0 +1,337 @@
+# clusters.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# CBC narrative clusters — each entry defines one coherent clinical story that
+# the narrative layer can tell, together with:
+#   - the signal combinations that trigger it
+#   - its priority (higher = shown earlier in the report)
+#   - whether it suppresses / is suppressed by other clusters
+#
+# The Python side (narrative_engine.py) pattern-matches engine output against
+# these rules, then renders the corresponding Jinja template from templates/.
+#
+# CLUSTER SELECTION ORDER:
+#   1. Collect every cluster whose `requires` conditions are met
+#   2. Sort by priority desc, tie-break by name for determinism
+#   3. Remove any cluster suppressed by a higher-priority match
+#   4. Render the remainder in sort order
+#
+# A "fallback" cluster (all_normal / incomplete) is always appended at the
+# end if no other clusters fired.
+# ─────────────────────────────────────────────────────────────────────────────
+
+clusters:
+  # ───────────────── CRITICAL / LIFE-THREATENING ─────────────────
+  - id: pancytopenia
+    priority: 100
+    tier: critical
+    title_key: pancytopenia.title
+    requires:
+      signals_all: [pancytopenia_pattern]
+    suppresses: [anemia_iron_deficiency, anemia_macrocytic, anemia_normocytic,
+                 anemia_possible_isolated,
+                 isolated_leukopenia, isolated_thrombocytopenia, reactive_thrombocytosis,
+                 severe_neutropenia, severe_thrombocytopenia,
+                 isolated_high_rdw, isolated_monocytosis, isolated_nlr_high]
+
+  - id: severe_neutropenia
+    priority: 95
+    tier: critical
+    title_key: severe_neutropenia.title
+    requires:
+      signals_any: [neutropenia]
+      signal_severity_at_least: {neutropenia: high}
+    suppresses: [isolated_leukopenia]
+
+  - id: severe_thrombocytopenia
+    priority: 93
+    tier: critical
+    title_key: severe_thrombocytopenia.title
+    requires:
+      signals_any: [thrombocytopenia]
+      signal_severity_at_least: {thrombocytopenia: high}
+    suppresses: [isolated_thrombocytopenia]
+
+  # ───────────────── ANAEMIA STORIES ─────────────────
+  - id: anemia_iron_deficiency
+    priority: 70
+    tier: abnormal
+    title_key: anemia_iron_deficiency.title
+    requires:
+      signals_any:
+        - iron_deficiency_likely_pattern
+        - microcytic_anemia_pattern
+    suppresses:
+      - anemia_normocytic
+      - anemia_macrocytic
+      - anemia_possible_isolated
+      - isolated_microcytosis
+      - isolated_low_mchc
+      - isolated_high_rdw
+      - reactive_thrombocytosis
+      - isolated_anemia
+
+  - id: anemia_macrocytic
+    priority: 65
+    tier: abnormal
+    title_key: anemia_macrocytic.title
+    requires:
+      signals_all: [macrocytic_anemia_pattern]
+    suppresses: [isolated_macrocytosis, isolated_high_rdw, isolated_anemia, anemia_possible_isolated]
+
+  - id: anemia_normocytic
+    priority: 60
+    tier: abnormal
+    title_key: anemia_normocytic.title
+    requires:
+      signals_all: [normocytic_anemia_pattern]
+    suppresses: [isolated_anemia, anemia_possible_isolated]
+
+  - id: anemia_possible_isolated
+    priority: 40
+    tier: abnormal
+    title_key: anemia_possible_isolated.title
+    requires:
+      signals_all: [anemia_possible]
+    # falls through only if no other anemia story claimed anemia_possible
+
+  # ───────────────── ERYTHROCYTOSIS ─────────────────
+  - id: polycythemia
+    priority: 75
+    tier: abnormal
+    title_key: polycythemia.title
+    requires:
+      signals_all: [high_hgb]
+    suppresses: [infection_pattern, isolated_leukocytosis, isolated_neutrophilia,
+                 isolated_nlr_high, isolated_monocytosis, reactive_thrombocytosis,
+                 hemoconcentration]
+
+  - id: hemoconcentration
+    priority: 55
+    tier: abnormal
+    title_key: hemoconcentration.title
+    requires:
+      signals_all: [hemoconcentration_possible]
+      signals_none: [high_hgb]  # high_hgb wins; don't double-tell
+
+  # ───────────────── WHITE-CELL STORIES ─────────────────
+  # CLINICAL FIX (post-review): neutrophilic_leukocytosis fires whenever the
+  # signal `neutrophilic_leukocytosis` is present (spawned by rules.py when
+  # ANC > ref.high OR neut% > 75 in the setting of leukocytosis). This is
+  # priority 73 — higher than infection_pattern (68) so it preempts the
+  # severity-floor requirement, and it actively suppresses the generic
+  # "isolated_leukocytosis" / "isolated_neutrophilia" / "reactive_thrombocytosis"
+  # stories which otherwise produce the wrong "no clear infection picture"
+  # wording for textbook neutrophilic shift.
+  - id: neutrophilic_leukocytosis
+    priority: 73
+    tier: abnormal
+    title_key: neutrophilic_leukocytosis.title
+    requires:
+      signals_any: [neutrophilic_leukocytosis]
+    suppresses:
+      - infection_pattern
+      - isolated_leukocytosis
+      - isolated_neutrophilia
+      - isolated_nlr_high
+      - reactive_thrombocytosis
+      # P3: also suppress the standalone ESR card — when neutrophilic
+      # leukocytosis is already telling the inflammation story, a second
+      # generic ESR card is redundant. The neutrophilic template inlines
+      # an "ESR/CRP also elevated supports this" note via {% if esr_high %}.
+      - elevated_esr
+
+  - id: infection_pattern
+    priority: 68
+    tier: abnormal
+    title_key: infection_pattern.title
+    requires:
+      signals_all: [leukocytosis, neutrophilia]
+      signal_severity_at_least: {leukocytosis: medium}
+    suppresses:
+      - isolated_leukocytosis
+      - isolated_neutrophilia
+      - isolated_nlr_high
+      - isolated_monocytosis
+      - reactive_thrombocytosis
+
+  - id: lymphoproliferative_suspect
+    priority: 72
+    tier: abnormal
+    title_key: lymphoproliferative_suspect.title
+    requires:
+      signals_all: [leukocytosis, lymphocytosis]
+      age_at_least: 50
+    suppresses:
+      - infection_pattern
+      - isolated_leukocytosis
+      - isolated_lymphocytosis
+      - isolated_monocytosis
+      - isolated_basophilia
+      - anemia_possible_isolated
+      - anemia_normocytic
+
+  - id: isolated_leukocytosis
+    priority: 35
+    tier: abnormal
+    title_key: isolated_leukocytosis.title
+    requires:
+      signals_all: [leukocytosis]
+
+  - id: isolated_leukopenia
+    priority: 35
+    tier: abnormal
+    title_key: isolated_leukopenia.title
+    requires:
+      signals_all: [leukopenia]
+
+  - id: eosinophilia_story
+    priority: 45
+    tier: abnormal
+    title_key: eosinophilia_story.title
+    requires:
+      signals_all: [eosinophilia]
+
+  # ───────────────── PLATELET STORIES ─────────────────
+  - id: severe_thrombocytosis
+    priority: 73
+    tier: abnormal
+    title_key: severe_thrombocytosis.title
+    requires:
+      signals_any: [thrombocytosis]
+      lab_at_least: {plt: 600}
+    suppresses: [reactive_thrombocytosis, isolated_leukocytosis,
+                 isolated_neutrophilia, isolated_monocytosis]
+
+  - id: elevated_esr
+    priority: 44
+    tier: abnormal
+    title_key: elevated_esr.title
+    requires:
+      signals_all: [elevated_esr]
+
+  - id: reactive_thrombocytosis
+    priority: 42
+    tier: abnormal
+    title_key: reactive_thrombocytosis.title
+    requires:
+      signals_all: [thrombocytosis]
+
+  - id: isolated_thrombocytopenia
+    priority: 50
+    tier: abnormal
+    title_key: isolated_thrombocytopenia.title
+    requires:
+      signals_all: [thrombocytopenia]
+
+  # ───────────────── "CARRIER" / TRAIT PATTERNS ─────────────────
+  - id: thalassemia_trait
+    priority: 55
+    tier: info
+    title_key: thalassemia_trait.title
+    requires:
+      signals_any: [thal_trait_like_pattern]
+    suppresses: [isolated_microcytosis]
+
+  - id: isolated_microcytosis
+    priority: 20
+    tier: info
+    title_key: isolated_microcytosis.title
+    requires:
+      signals_all: [microcytosis_without_anemia]
+
+  - id: isolated_macrocytosis
+    priority: 20
+    tier: info
+    title_key: isolated_macrocytosis.title
+    requires:
+      signals_all: [macrocytosis_without_anemia]
+
+  # ───────────────── RARELY-INTERESTING FINDINGS ─────────────────
+  - id: isolated_monocytosis
+    priority: 15
+    tier: minor
+    title_key: isolated_monocytosis.title
+    requires:
+      signals_all: [monocytosis]
+
+  - id: isolated_nlr_high
+    priority: 15
+    tier: minor
+    title_key: isolated_nlr_high.title
+    requires:
+      signals_all: [nlr_high]
+
+  - id: isolated_basophilia
+    priority: 15
+    tier: minor
+    title_key: isolated_basophilia.title
+    requires:
+      signals_all: [basophilia]
+
+  - id: isolated_high_rdw
+    priority: 15
+    tier: minor
+    title_key: isolated_high_rdw.title
+    requires:
+      signals_all: [high_rdw]
+
+  # ───────────────── TERMINAL / FALLBACK ─────────────────
+  - id: all_normal
+    priority: 0
+    tier: normal
+    title_key: all_normal.title
+    requires:
+      signals_none: [
+        pancytopenia_pattern, thrombocytopenia, thrombocytosis,
+        anemia_possible, high_hgb, high_rdw,
+        leukocytosis, leukopenia, neutropenia, neutrophilia,
+        lymphocytosis, lymphopenia, monocytosis, eosinophilia, basophilia,
+        microcytic_anemia_pattern, macrocytic_anemia_pattern,
+        normocytic_anemia_pattern, iron_deficiency_likely_pattern,
+        thal_trait_like_pattern, microcytosis_without_anemia,
+        macrocytosis_without_anemia, hemoconcentration_possible,
+        low_mchc_hypochromia, high_mchc_note, nlr_high,
+        low_plt_high_mpv, low_plt_low_mpv,
+        bicytopenia_wbc_hgb, bicytopenia_hgb_plt, bicytopenia_wbc_plt,
+        relative_neutrophilia, relative_lymphocytosis,
+        plt_high_microcytosis_combo,
+      ]
+
+  - id: incomplete
+    priority: -1
+    tier: info
+    title_key: incomplete.title
+    requires:
+      signals_any: [missing_core_cbc]
+
+  # ───── Patient-context-aware clusters ─────
+  - id: anemia_with_diabetes
+    priority: 80
+    tier: abnormal
+    title_key: anemia_with_diabetes.title
+    requires:
+      signals_all: [anemia_with_diabetes]
+    suppresses: [anemia_normocytic, anemia_possible_isolated, isolated_anemia]
+
+  - id: leukocytosis_on_steroids
+    priority: 70
+    tier: info
+    title_key: leukocytosis_on_steroids.title
+    requires:
+      signals_all: [leukocytosis_on_steroids]
+    suppresses: [isolated_leukocytosis]
+
+  - id: thrombocytopenia_on_anticoagulants
+    priority: 95
+    tier: critical
+    title_key: thrombocytopenia_on_anticoagulants.title
+    requires:
+      signals_all: [thrombocytopenia_on_anticoagulants]
+    # P3: suppress the generic severe_thrombocytopenia and isolated_thrombocytopenia
+    # cards. The thrombocytopenia_on_anticoagulants template already covers the
+    # "platelets are low + you are on anticoagulants" message with appropriate
+    # urgency. Showing both produces two ⚠️ emergency cards next to each other
+    # that say nearly the same thing — clinically safe but visually overwhelming.
+    suppresses:
+      - severe_thrombocytopenia
+      - isolated_thrombocytopenia
