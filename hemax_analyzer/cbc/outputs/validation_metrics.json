@@ -1,0 +1,670 @@
+{
+  "healthy_cohort": {
+    "n_healthy": 9088,
+    "no_signal_rate": 0.8255941901408451,
+    "mean_signals_per_record": 0.24944982394366197,
+    "median_signals_per_record": 0.0,
+    "per_signal_false_positive_rate": {
+      "leukocytosis": 0.011003521126760563,
+      "leukopenia": 0.014634683098591549,
+      "neutrophilia": 0.008142605633802816,
+      "neutropenia": 0.0003301056338028169,
+      "lymphocytosis": 0.004511443661971831,
+      "lymphopenia": 0.003631161971830986,
+      "thrombocytosis": 0.0,
+      "thrombocytopenia": 0.01485475352112676,
+      "eosinophilia": 0.025528169014084508,
+      "monocytosis": 0.03587147887323944,
+      "basophilia": 0.01232394366197183,
+      "anemia_possible": 0.038182218309859156,
+      "high_hgb": 0.004511443661971831,
+      "high_rdw": 0.012764084507042254,
+      "microcytic_anemia_pattern": 0.004951584507042254,
+      "macrocytic_anemia_pattern": 0.0,
+      "normocytic_anemia_pattern": 0.0332306338028169,
+      "pancytopenia_pattern": 0.0,
+      "iron_deficiency_likely_pattern": 0.0013204225352112676,
+      "plt_high_microcytosis_combo": 0.0,
+      "thal_trait_like_pattern": 0.0009903169014084507,
+      "nlr_high": 0.0,
+      "low_mchc_hypochromia": 0.002640845070422535,
+      "high_mchc_note": 0.0022007042253521128,
+      "microcytosis_without_anemia": 0.014414612676056338,
+      "macrocytosis_without_anemia": 0.0,
+      "hemoconcentration_possible": 0.0012103873239436619,
+      "low_plt_high_mpv": 0.0003301056338028169,
+      "low_plt_low_mpv": 0.0,
+      "bicytopenia_wbc_hgb": 0.0008802816901408451,
+      "bicytopenia_hgb_plt": 0.0007702464788732394,
+      "bicytopenia_wbc_plt": 0.00022007042253521127,
+      "relative_neutrophilia": 0.0,
+      "relative_lymphocytosis": 0.0,
+      "missing_core_cbc": 0.0016505281690140845
+    }
+  },
+  "overall": {
+    "n_total": 119555,
+    "any_signal_rate": 0.2955627117226381,
+    "signals_per_record": {
+      "mean": 0.5855631299401949,
+      "median": 0.0,
+      "p95": 3.0
+    },
+    "signal_prevalence": {
+      "leukocytosis": {
+        "n_fired": 3541,
+        "rate": 0.02961816737066622
+      },
+      "leukopenia": {
+        "n_fired": 4176,
+        "rate": 0.034929530341683744
+      },
+      "neutrophilia": {
+        "n_fired": 3555,
+        "rate": 0.02973526828656267
+      },
+      "neutropenia": {
+        "n_fired": 1253,
+        "rate": 0.010480531972732215
+      },
+      "lymphocytosis": {
+        "n_fired": 1001,
+        "rate": 0.008372715486596127
+      },
+      "lymphopenia": {
+        "n_fired": 1804,
+        "rate": 0.015089289448371042
+      },
+      "thrombocytosis": {
+        "n_fired": 1938,
+        "rate": 0.01621011250052277
+      },
+      "thrombocytopenia": {
+        "n_fired": 2293,
+        "rate": 0.019179457153611308
+      },
+      "eosinophilia": {
+        "n_fired": 2567,
+        "rate": 0.02147128936472753
+      },
+      "monocytosis": {
+        "n_fired": 5384,
+        "rate": 0.04503366651332023
+      },
+      "basophilia": {
+        "n_fired": 1284,
+        "rate": 0.010739826857931496
+      },
+      "anemia_possible": {
+        "n_fired": 8839,
+        "rate": 0.07393249968633683
+      },
+      "high_hgb": {
+        "n_fired": 1123,
+        "rate": 0.009393166325122328
+      },
+      "high_rdw": {
+        "n_fired": 5906,
+        "rate": 0.0493998578060307
+      },
+      "microcytic_anemia_pattern": {
+        "n_fired": 3184,
+        "rate": 0.02663209401530676
+      },
+      "macrocytic_anemia_pattern": {
+        "n_fired": 204,
+        "rate": 0.001706327631633976
+      },
+      "normocytic_anemia_pattern": {
+        "n_fired": 5451,
+        "rate": 0.045594078039396094
+      },
+      "pancytopenia_pattern": {
+        "n_fired": 67,
+        "rate": 0.0005604115260758646
+      },
+      "iron_deficiency_likely_pattern": {
+        "n_fired": 1844,
+        "rate": 0.015423863493789469
+      },
+      "plt_high_microcytosis_combo": {
+        "n_fired": 732,
+        "rate": 0.006122705031157208
+      },
+      "thal_trait_like_pattern": {
+        "n_fired": 473,
+        "rate": 0.003956338087072895
+      },
+      "nlr_high": {
+        "n_fired": 995,
+        "rate": 0.008322529379783363
+      },
+      "low_mchc_hypochromia": {
+        "n_fired": 1433,
+        "rate": 0.011986115177115135
+      },
+      "high_mchc_note": {
+        "n_fired": 960,
+        "rate": 0.00802977709004224
+      },
+      "microcytosis_without_anemia": {
+        "n_fired": 7192,
+        "rate": 0.06015641336623311
+      },
+      "macrocytosis_without_anemia": {
+        "n_fired": 967,
+        "rate": 0.008088327547990465
+      },
+      "hemoconcentration_possible": {
+        "n_fired": 737,
+        "rate": 0.006164526786834512
+      },
+      "low_plt_high_mpv": {
+        "n_fired": 71,
+        "rate": 0.0005938689306177074
+      },
+      "low_plt_low_mpv": {
+        "n_fired": 48,
+        "rate": 0.000401488854502112
+      },
+      "bicytopenia_wbc_hgb": {
+        "n_fired": 499,
+        "rate": 0.004173811216594873
+      },
+      "bicytopenia_hgb_plt": {
+        "n_fired": 306,
+        "rate": 0.002559491447450964
+      },
+      "bicytopenia_wbc_plt": {
+        "n_fired": 180,
+        "rate": 0.00150558320438292
+      },
+      "relative_neutrophilia": {
+        "n_fired": 0,
+        "rate": 0.0
+      },
+      "relative_lymphocytosis": {
+        "n_fired": 0,
+        "rate": 0.0
+      },
+      "missing_core_cbc": {
+        "n_fired": 24413,
+        "rate": 0.20419890427000126
+      }
+    },
+    "severity_distribution": {
+      "leukocytosis": {
+        "low": 3114,
+        "medium": 392,
+        "high": 35
+      },
+      "leukopenia": {
+        "low": 4167,
+        "medium": 9
+      },
+      "neutrophilia": {
+        "low": 3327,
+        "medium": 222,
+        "high": 6
+      },
+      "neutropenia": {
+        "low": 954,
+        "medium": 277,
+        "high": 22
+      },
+      "lymphocytosis": {
+        "low": 1001
+      },
+      "lymphopenia": {
+        "low": 1804
+      },
+      "thrombocytosis": {
+        "low": 1760,
+        "medium": 174,
+        "high": 4
+      },
+      "thrombocytopenia": {
+        "low": 2029,
+        "high": 35,
+        "medium": 229
+      },
+      "eosinophilia": {
+        "low": 2567
+      },
+      "monocytosis": {
+        "low": 5384
+      },
+      "basophilia": {
+        "low": 1284
+      },
+      "anemia_possible": {
+        "medium": 325,
+        "low": 8473,
+        "high": 41
+      },
+      "high_hgb": {
+        "medium": 1123
+      },
+      "high_rdw": {
+        "low": 5906
+      },
+      "microcytic_anemia_pattern": {
+        "medium": 3184
+      },
+      "macrocytic_anemia_pattern": {
+        "medium": 204
+      },
+      "normocytic_anemia_pattern": {
+        "medium": 5451
+      },
+      "pancytopenia_pattern": {
+        "high": 67
+      },
+      "iron_deficiency_likely_pattern": {
+        "medium": 1844
+      },
+      "plt_high_microcytosis_combo": {
+        "medium": 732
+      },
+      "thal_trait_like_pattern": {
+        "low": 473
+      },
+      "nlr_high": {
+        "low": 995
+      },
+      "low_mchc_hypochromia": {
+        "low": 1433
+      },
+      "high_mchc_note": {
+        "low": 960
+      },
+      "microcytosis_without_anemia": {
+        "low": 7192
+      },
+      "macrocytosis_without_anemia": {
+        "low": 967
+      },
+      "hemoconcentration_possible": {
+        "low": 737
+      },
+      "low_plt_high_mpv": {
+        "low": 71
+      },
+      "low_plt_low_mpv": {
+        "low": 48
+      },
+      "bicytopenia_wbc_hgb": {
+        "medium": 499
+      },
+      "bicytopenia_hgb_plt": {
+        "medium": 306
+      },
+      "bicytopenia_wbc_plt": {
+        "medium": 180
+      },
+      "missing_core_cbc": {
+        "low": 24413
+      }
+    }
+  },
+  "deterministic_performance": {
+    "leukocytosis": {
+      "n_evaluable": 62691,
+      "gt_prevalence": 0.0530538673812828,
+      "engine_prevalence": 0.0530538673812828,
+      "tp": 3326,
+      "fn": 0,
+      "fp": 0,
+      "tn": 59365,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "leukopenia": {
+      "n_evaluable": 62691,
+      "gt_prevalence": 0.026830007497088897,
+      "engine_prevalence": 0.026830007497088897,
+      "tp": 1682,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61009,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "neutrophilia": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.04758248964381108,
+      "engine_prevalence": 0.04758248964381108,
+      "tp": 2975,
+      "fn": 0,
+      "fp": 0,
+      "tn": 59548,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "neutropenia": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.010524127121219392,
+      "engine_prevalence": 0.010524127121219392,
+      "tp": 658,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61865,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "lymphocytosis": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.014490667434384147,
+      "engine_prevalence": 0.014490667434384147,
+      "tp": 906,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61617,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "lymphopenia": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.01960878396749996,
+      "engine_prevalence": 0.01960878396749996,
+      "tp": 1226,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61297,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "thrombocytosis": {
+      "n_evaluable": 62691,
+      "gt_prevalence": 0.010081191877621987,
+      "engine_prevalence": 0.010081191877621987,
+      "tp": 632,
+      "fn": 0,
+      "fp": 0,
+      "tn": 62059,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "thrombocytopenia": {
+      "n_evaluable": 62691,
+      "gt_prevalence": 0.03423138887559618,
+      "engine_prevalence": 0.03423138887559618,
+      "tp": 2146,
+      "fn": 0,
+      "fp": 0,
+      "tn": 60545,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "eosinophilia": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.03186027541864594,
+      "engine_prevalence": 0.03186027541864594,
+      "tp": 1992,
+      "fn": 0,
+      "fp": 0,
+      "tn": 60531,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "monocytosis": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.06994226124786079,
+      "engine_prevalence": 0.06994226124786079,
+      "tp": 4373,
+      "fn": 0,
+      "fp": 0,
+      "tn": 58150,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "basophilia": {
+      "n_evaluable": 62523,
+      "gt_prevalence": 0.016617884618460407,
+      "engine_prevalence": 0.016617884618460407,
+      "tp": 1039,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61484,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "anemia_possible": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.10061889874306132,
+      "engine_prevalence": 0.10061889874306132,
+      "tp": 6308,
+      "fn": 0,
+      "fp": 0,
+      "tn": 56384,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "high_hgb": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.011054041983028137,
+      "engine_prevalence": 0.011054041983028137,
+      "tp": 693,
+      "fn": 0,
+      "fp": 0,
+      "tn": 61999,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "high_rdw": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.07538441906463345,
+      "engine_prevalence": 0.07538441906463345,
+      "tp": 4726,
+      "fn": 0,
+      "fp": 0,
+      "tn": 57966,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "microcytic_anemia_pattern": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.028265169399604415,
+      "engine_prevalence": 0.028265169399604415,
+      "tp": 1772,
+      "fn": 0,
+      "fp": 0,
+      "tn": 60920,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "macrocytic_anemia_pattern": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.0032061507050341353,
+      "engine_prevalence": 0.0032061507050341353,
+      "tp": 201,
+      "fn": 0,
+      "fp": 0,
+      "tn": 62491,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "normocytic_anemia_pattern": {
+      "n_evaluable": 62692,
+      "gt_prevalence": 0.06914757863842276,
+      "engine_prevalence": 0.06914757863842276,
+      "tp": 4335,
+      "fn": 0,
+      "fp": 0,
+      "tn": 58357,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    },
+    "pancytopenia_pattern": {
+      "n_evaluable": 62690,
+      "gt_prevalence": 0.0010368479821343116,
+      "engine_prevalence": 0.0010368479821343116,
+      "tp": 65,
+      "fn": 0,
+      "fp": 0,
+      "tn": 62625,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0
+    }
+  },
+  "self_report_lift": [
+    {
+      "label": "told_mi",
+      "signal": "anemia_possible",
+      "n_label_pos": 2959,
+      "n_label_neg": 63470,
+      "rate_in_label_pos": 0.156471781007097,
+      "rate_in_label_neg": 0.08678115645186703,
+      "lift": 1.8030617175963046
+    },
+    {
+      "label": "told_weak_kidney",
+      "signal": "anemia_possible",
+      "n_label_pos": 2092,
+      "n_label_neg": 59459,
+      "rate_in_label_pos": 0.2390057361376673,
+      "rate_in_label_neg": 0.08609293799088448,
+      "lift": 2.776136367456448
+    },
+    {
+      "label": "told_cancer",
+      "signal": "anemia_possible",
+      "n_label_pos": 6753,
+      "n_label_neg": 59729,
+      "rate_in_label_pos": 0.11224640900340589,
+      "rate_in_label_neg": 0.08737799059083527,
+      "lift": 1.284607350711713
+    },
+    {
+      "label": "told_diabetes",
+      "signal": "anemia_possible",
+      "n_label_pos": 8440,
+      "n_label_neg": 104544,
+      "rate_in_label_pos": 0.16729857819905214,
+      "rate_in_label_neg": 0.06951140189776553,
+      "lift": 2.40677894031123
+    },
+    {
+      "label": "told_diabetes",
+      "signal": "leukocytosis",
+      "n_label_pos": 8440,
+      "n_label_neg": 104544,
+      "rate_in_label_pos": 0.06078199052132702,
+      "rate_in_label_neg": 0.028370829507193142,
+      "lift": 2.1424114690025666
+    },
+    {
+      "label": "told_htn",
+      "signal": "leukocytosis",
+      "n_label_pos": 23863,
+      "n_label_neg": 51875,
+      "rate_in_label_pos": 0.04919750240958806,
+      "rate_in_label_neg": 0.04194698795180723,
+      "lift": 1.172849465761664
+    }
+  ],
+  "by_cycle": {
+    "1999-2000": {
+      "n": 9965,
+      "any_signal_rate": 0.2580030105368791,
+      "anemia_rate": 0.06141495233316608,
+      "leukocytosis_rate": 0.03090817862518816
+    },
+    "2001-2002": {
+      "n": 11039,
+      "any_signal_rate": 0.27638373041036324,
+      "anemia_rate": 0.06694446960775433,
+      "leukocytosis_rate": 0.027266962587190868
+    },
+    "2003-2004": {
+      "n": 10122,
+      "any_signal_rate": 0.29085161035368506,
+      "anemia_rate": 0.0612527168543766,
+      "leukocytosis_rate": 0.03220707370084963
+    },
+    "2005-2006": {
+      "n": 10348,
+      "any_signal_rate": 0.3017974487823734,
+      "anemia_rate": 0.06551990722844994,
+      "leukocytosis_rate": 0.030054116737533824
+    },
+    "2007-2008": {
+      "n": 10149,
+      "any_signal_rate": 0.31205044832003154,
+      "anemia_rate": 0.0683811212927382,
+      "leukocytosis_rate": 0.030643413144152132
+    },
+    "2009-2010": {
+      "n": 10537,
+      "any_signal_rate": 0.3024580051247983,
+      "anemia_rate": 0.07079813988801367,
+      "leukocytosis_rate": 0.029989560595995064
+    },
+    "2011-2012": {
+      "n": 9756,
+      "any_signal_rate": 0.31898318983189833,
+      "anemia_rate": 0.09358343583435834,
+      "leukocytosis_rate": 0.022960229602296024
+    },
+    "2013-2014": {
+      "n": 10175,
+      "any_signal_rate": 0.32766584766584766,
+      "anemia_rate": 0.08530712530712531,
+      "leukocytosis_rate": 0.03724815724815725
+    },
+    "2015-2016": {
+      "n": 9971,
+      "any_signal_rate": 0.3262461137298165,
+      "anemia_rate": 0.08514692608564838,
+      "leukocytosis_rate": 0.03540266773643566
+    },
+    "2017-2020": {
+      "n": 15560,
+      "any_signal_rate": 0.31060411311053987,
+      "anemia_rate": 0.08277634961439588,
+      "leukocytosis_rate": 0.030077120822622108
+    },
+    "2021-2023": {
+      "n": 11933,
+      "any_signal_rate": 0.23137517807759994,
+      "anemia_rate": 0.06972261795022207,
+      "leukocytosis_rate": 0.02044749853347859
+    }
+  }
+}

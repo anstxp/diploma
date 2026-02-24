@@ -1,0 +1,3638 @@
+{
+  "metadata": {
+    "source": "NHANES 1999-2023 (harmonised master dataset)",
+    "method": "CLSI EP28-A3c non-parametric (2.5 / 97.5 percentile, bootstrap 90% CI)",
+    "outlier_rule": "Tukey fence, k=1.5 \u00d7 IQR",
+    "bootstrap_n": 500,
+    "age_bands": [
+      "20-40",
+      "40-60",
+      "60-80"
+    ],
+    "n_master": 119555,
+    "n_reference_population": 9413,
+    "partitioning_test": "Harris-Boyd z, z_crit = 3\u00b7\u221a(n\u0304/120)"
+  },
+  "biomarkers": {
+    "wbc": {
+      "display": "WBC (leukocytes)",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        4.0,
+        11.0
+      ],
+      "textbook_male": [
+        4.0,
+        11.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 55,
+          "n_final": 3212,
+          "mean": 6.92780199252802,
+          "sd": 1.7442013448515308,
+          "median": 6.8,
+          "lrl": 4.0,
+          "url": 10.8,
+          "lrl_ci": [
+            3.9,
+            4.1
+          ],
+          "url_ci": [
+            10.7,
+            10.972499999999991
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 19,
+          "n_final": 1482,
+          "mean": 6.538798920377868,
+          "sd": 1.704139429900532,
+          "median": 6.4,
+          "lrl": 3.7,
+          "url": 10.3,
+          "lrl_ci": [
+            3.5025,
+            3.8024999999999998
+          ],
+          "url_ci": [
+            10.0,
+            10.497499999999992
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 10,
+          "n_final": 283,
+          "mean": 5.863604240282686,
+          "sd": 1.3461201453271974,
+          "median": 5.8,
+          "lrl": 3.2100000000000004,
+          "url": 8.4,
+          "lrl_ci": [
+            3.1,
+            3.5004999999999997
+          ],
+          "url_ci": [
+            8.1,
+            9.0
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 42,
+          "n_final": 2790,
+          "mean": 6.707956989247312,
+          "sd": 1.7590093200544052,
+          "median": 6.5,
+          "lrl": 3.8,
+          "url": 10.6,
+          "lrl_ci": [
+            3.7,
+            3.9
+          ],
+          "url_ci": [
+            10.4,
+            10.8
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 35,
+          "n_final": 1136,
+          "mean": 6.5955985915492965,
+          "sd": 1.6740038771100598,
+          "median": 6.4,
+          "lrl": 3.8,
+          "url": 10.2,
+          "lrl_ci": [
+            3.5,
+            3.9
+          ],
+          "url_ci": [
+            10.0,
+            10.4
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 7,
+          "n_final": 327,
+          "mean": 6.381345565749235,
+          "sd": 1.733906019869439,
+          "median": 6.0,
+          "lrl": 3.615,
+          "url": 10.2,
+          "lrl_ci": [
+            3.4,
+            3.8
+          ],
+          "url_ci": [
+            9.7,
+            10.6
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 4.85,
+            "z_crit": 15.0,
+            "justified": false
+          },
+          "40_60": {
+            "z": 0.85,
+            "z_crit": 9.91,
+            "justified": false
+          },
+          "60_80": {
+            "z": 4.15,
+            "z_crit": 4.78,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 7.22,
+              "z_crit": 13.27,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 7.38,
+              "z_crit": 8.14,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 1.88,
+              "z_crit": 12.13,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.98,
+              "z_crit": 7.41,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "neut_pct": {
+      "display": "Neutrophils %",
+      "unit": "%",
+      "textbook_female": [
+        45.0,
+        75.0
+      ],
+      "textbook_male": [
+        45.0,
+        75.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 29,
+          "n_final": 3235,
+          "mean": 57.65258114374035,
+          "sd": 8.492741379385171,
+          "median": 58.0,
+          "lrl": 40.1,
+          "url": 73.8,
+          "lrl_ci": [
+            39.5,
+            40.485
+          ],
+          "url_ci": [
+            73.21500000000002,
+            74.4
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 24,
+          "n_final": 1475,
+          "mean": 58.478779661016944,
+          "sd": 8.174418423098698,
+          "median": 58.5,
+          "lrl": 41.4,
+          "url": 74.0,
+          "lrl_ci": [
+            40.3,
+            42.17
+          ],
+          "url_ci": [
+            73.4,
+            74.24499999999996
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 7,
+          "n_final": 286,
+          "mean": 56.72167832167832,
+          "sd": 8.06942803129815,
+          "median": 57.0,
+          "lrl": 39.3125,
+          "url": 71.625,
+          "lrl_ci": [
+            38.2,
+            41.3
+          ],
+          "url_ci": [
+            69.8875,
+            73.7
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 34,
+          "n_final": 2797,
+          "mean": 56.36449767608151,
+          "sd": 8.787616966647787,
+          "median": 56.5,
+          "lrl": 38.49,
+          "url": 73.3,
+          "lrl_ci": [
+            37.6,
+            39.2
+          ],
+          "url_ci": [
+            72.71,
+            74.11999999999998
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 21,
+          "n_final": 1150,
+          "mean": 57.79513043478261,
+          "sd": 8.200082400530325,
+          "median": 57.5,
+          "lrl": 41.4725,
+          "url": 73.05499999999998,
+          "lrl_ci": [
+            40.7,
+            42.4725
+          ],
+          "url_ci": [
+            72.45362499999997,
+            74.62749999999998
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 5,
+          "n_final": 329,
+          "mean": 58.77051671732523,
+          "sd": 8.908762473966574,
+          "median": 59.2,
+          "lrl": 40.4,
+          "url": 75.14,
+          "lrl_ci": [
+            37.620000000000005,
+            42.120000000000005
+          ],
+          "url_ci": [
+            73.5,
+            77.94000000000001
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 5.77,
+            "z_crit": 15.04,
+            "justified": false
+          },
+          "40_60": {
+            "z": 2.12,
+            "z_crit": 9.92,
+            "justified": false
+          },
+          "60_80": {
+            "z": 2.99,
+            "z_crit": 4.8,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 3.18,
+              "z_crit": 13.29,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.36,
+              "z_crit": 8.13,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 4.88,
+              "z_crit": 12.17,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.78,
+              "z_crit": 7.45,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "lymph_pct": {
+      "display": "Lymphocytes %",
+      "unit": "%",
+      "textbook_female": [
+        20.0,
+        45.0
+      ],
+      "textbook_male": [
+        20.0,
+        45.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 38,
+          "n_final": 3226,
+          "mean": 31.672938623682576,
+          "sd": 7.392218987784626,
+          "median": 31.3,
+          "lrl": 18.3,
+          "url": 47.2,
+          "lrl_ci": [
+            17.659375,
+            18.7
+          ],
+          "url_ci": [
+            46.6,
+            47.8
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 34,
+          "n_final": 1465,
+          "mean": 30.672764505119456,
+          "sd": 7.161404376180443,
+          "median": 30.5,
+          "lrl": 17.060000000000002,
+          "url": 46.27999999999997,
+          "lrl_ci": [
+            16.5,
+            17.7
+          ],
+          "url_ci": [
+            44.7,
+            47.0
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 7,
+          "n_final": 286,
+          "mean": 31.91118881118881,
+          "sd": 7.111252312986939,
+          "median": 31.9,
+          "lrl": 18.85,
+          "url": 46.0875,
+          "lrl_ci": [
+            16.5625,
+            20.0125
+          ],
+          "url_ci": [
+            45.1,
+            47.3
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 42,
+          "n_final": 2789,
+          "mean": 31.62413051272858,
+          "sd": 7.523126611242515,
+          "median": 31.4,
+          "lrl": 17.0,
+          "url": 47.32999999999997,
+          "lrl_ci": [
+            16.5,
+            17.8
+          ],
+          "url_ci": [
+            46.6,
+            47.82999999999997
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 15,
+          "n_final": 1156,
+          "mean": 30.30856401384083,
+          "sd": 7.422234364246621,
+          "median": 29.9,
+          "lrl": 16.2,
+          "url": 45.5,
+          "lrl_ci": [
+            15.3,
+            17.162499999999998
+          ],
+          "url_ci": [
+            44.82375,
+            46.4125
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 3,
+          "n_final": 331,
+          "mean": 28.792145015105742,
+          "sd": 8.159341101041758,
+          "median": 28.5,
+          "lrl": 15.225,
+          "url": 46.699999999999996,
+          "lrl_ci": [
+            13.525,
+            16.276249999999997
+          ],
+          "url_ci": [
+            44.8,
+            48.5
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 0.25,
+            "z_crit": 15.02,
+            "justified": false
+          },
+          "40_60": {
+            "z": 1.27,
+            "z_crit": 9.91,
+            "justified": false
+          },
+          "60_80": {
+            "z": 5.07,
+            "z_crit": 4.81,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 4.39,
+              "z_crit": 13.26,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 2.69,
+              "z_crit": 8.1,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 5.05,
+              "z_crit": 12.16,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.04,
+              "z_crit": 7.47,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "mono_pct": {
+      "display": "Monocytes %",
+      "unit": "%",
+      "textbook_female": [
+        2.0,
+        10.0
+      ],
+      "textbook_male": [
+        2.0,
+        10.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 90,
+          "n_final": 3174,
+          "mean": 7.253276622558286,
+          "sd": 1.681440646684236,
+          "median": 7.1,
+          "lrl": 4.3,
+          "url": 10.9,
+          "lrl_ci": [
+            4.2,
+            4.4
+          ],
+          "url_ci": [
+            10.7,
+            11.0
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 27,
+          "n_final": 1472,
+          "mean": 7.408355978260869,
+          "sd": 1.7487972406476786,
+          "median": 7.3,
+          "lrl": 4.3,
+          "url": 11.222499999999991,
+          "lrl_ci": [
+            4.1,
+            4.4
+          ],
+          "url_ci": [
+            11.0,
+            11.42249999999999
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 5,
+          "n_final": 288,
+          "mean": 7.939583333333333,
+          "sd": 1.823261187785507,
+          "median": 7.8,
+          "lrl": 5.0,
+          "url": 11.564999999999998,
+          "lrl_ci": [
+            4.470000000000001,
+            5.2
+          ],
+          "url_ci": [
+            11.282499999999999,
+            12.577499999999992
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2830,
+          "n_outliers": 67,
+          "n_final": 2763,
+          "mean": 8.200977198697068,
+          "sd": 1.8965847732593262,
+          "median": 8.1,
+          "lrl": 4.7,
+          "url": 12.2,
+          "lrl_ci": [
+            4.6,
+            4.800249999999999
+          ],
+          "url_ci": [
+            12.0,
+            12.4
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 20,
+          "n_final": 1151,
+          "mean": 8.090964378801043,
+          "sd": 1.9249271086232425,
+          "median": 8.0,
+          "lrl": 4.6,
+          "url": 12.2,
+          "lrl_ci": [
+            4.4,
+            4.875
+          ],
+          "url_ci": [
+            12.0,
+            12.428749999999997
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 9,
+          "n_final": 325,
+          "mean": 8.542461538461538,
+          "sd": 2.063134699025923,
+          "median": 8.4,
+          "lrl": 4.6,
+          "url": 12.979999999999995,
+          "lrl_ci": [
+            4.33,
+            4.91
+          ],
+          "url_ci": [
+            12.179999999999994,
+            13.589999999999998
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 20.24,
+            "z_crit": 14.92,
+            "justified": true
+          },
+          "40_60": {
+            "z": 9.38,
+            "z_crit": 9.92,
+            "justified": false
+          },
+          "60_80": {
+            "z": 3.84,
+            "z_crit": 4.79,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 2.85,
+              "z_crit": 13.2,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.55,
+              "z_crit": 8.12,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 1.64,
+              "z_crit": 12.12,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.53,
+              "z_crit": 7.44,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "eos_pct": {
+      "display": "Eosinophils %",
+      "unit": "%",
+      "textbook_female": [
+        0.5,
+        5.0
+      ],
+      "textbook_male": [
+        0.5,
+        5.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3263,
+          "n_outliers": 206,
+          "n_final": 3057,
+          "mean": 2.131305201177625,
+          "sd": 1.2198663791847106,
+          "median": 1.8,
+          "lrl": 0.5,
+          "url": 5.159999999999991,
+          "lrl_ci": [
+            0.5,
+            0.5
+          ],
+          "url_ci": [
+            5.1,
+            5.3
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 84,
+          "n_final": 1415,
+          "mean": 2.148197879858657,
+          "sd": 1.183321418263245,
+          "median": 1.9,
+          "lrl": 0.6,
+          "url": 4.9,
+          "lrl_ci": [
+            0.5,
+            0.6
+          ],
+          "url_ci": [
+            4.7,
+            5.1
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 15,
+          "n_final": 278,
+          "mean": 2.293525179856115,
+          "sd": 1.2607778604667472,
+          "median": 2.0,
+          "lrl": 0.49250000000000005,
+          "url": 5.414999999999998,
+          "lrl_ci": [
+            0.2,
+            0.6925
+          ],
+          "url_ci": [
+            4.8,
+            5.9
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 147,
+          "n_final": 2684,
+          "mean": 2.566467958271237,
+          "sd": 1.5154985275139368,
+          "median": 2.2,
+          "lrl": 0.6,
+          "url": 6.3,
+          "lrl_ci": [
+            0.6,
+            0.6
+          ],
+          "url_ci": [
+            6.2,
+            6.4
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 67,
+          "n_final": 1104,
+          "mean": 2.55588768115942,
+          "sd": 1.3840438111362563,
+          "median": 2.3,
+          "lrl": 0.6,
+          "url": 5.8,
+          "lrl_ci": [
+            0.6,
+            0.6
+          ],
+          "url_ci": [
+            5.6,
+            6.0
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 10,
+          "n_final": 324,
+          "mean": 2.855864197530864,
+          "sd": 1.5572648663132207,
+          "median": 2.5,
+          "lrl": 0.6,
+          "url": 6.392500000000002,
+          "lrl_ci": [
+            0.41462500000000024,
+            0.8
+          ],
+          "url_ci": [
+            6.1,
+            6.977500000000004
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 11.88,
+            "z_crit": 14.67,
+            "justified": false
+          },
+          "40_60": {
+            "z": 7.81,
+            "z_crit": 9.72,
+            "justified": false
+          },
+          "60_80": {
+            "z": 4.89,
+            "z_crit": 4.75,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.44,
+              "z_crit": 12.95,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.77,
+              "z_crit": 7.97,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.21,
+              "z_crit": 11.92,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.12,
+              "z_crit": 7.32,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "baso_pct": {
+      "display": "Basophils %",
+      "unit": "%",
+      "textbook_female": [
+        0.0,
+        1.5
+      ],
+      "textbook_male": [
+        0.0,
+        1.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 98,
+          "n_final": 3166,
+          "mean": 0.6368288060644346,
+          "sd": 0.299037825761724,
+          "median": 0.6,
+          "lrl": 0.1,
+          "url": 1.3,
+          "lrl_ci": [
+            0.1,
+            0.1
+          ],
+          "url_ci": [
+            1.3,
+            1.3
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 50,
+          "n_final": 1449,
+          "mean": 0.679296066252588,
+          "sd": 0.30671454730307895,
+          "median": 0.6,
+          "lrl": 0.1,
+          "url": 1.3799999999999955,
+          "lrl_ci": [
+            0.1,
+            0.12000000000000029
+          ],
+          "url_ci": [
+            1.3,
+            1.4
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 5,
+          "n_final": 288,
+          "mean": 0.7527777777777778,
+          "sd": 0.30998357705052304,
+          "median": 0.7,
+          "lrl": 0.1,
+          "url": 1.3,
+          "lrl_ci": [
+            0.1,
+            0.3
+          ],
+          "url_ci": [
+            1.3,
+            1.4
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 86,
+          "n_final": 2745,
+          "mean": 0.6423315118397085,
+          "sd": 0.3227981469961746,
+          "median": 0.6,
+          "lrl": 0.1,
+          "url": 1.3,
+          "lrl_ci": [
+            0.1,
+            0.1
+          ],
+          "url_ci": [
+            1.3,
+            1.4
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 35,
+          "n_final": 1136,
+          "mean": 0.6681338028169014,
+          "sd": 0.32195225473310246,
+          "median": 0.6,
+          "lrl": 0.1,
+          "url": 1.3,
+          "lrl_ci": [
+            0.1,
+            0.1
+          ],
+          "url_ci": [
+            1.3,
+            1.4
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 14,
+          "n_final": 320,
+          "mean": 0.685625,
+          "sd": 0.3042740216495383,
+          "median": 0.6,
+          "lrl": 0.1,
+          "url": 1.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            0.2
+          ],
+          "url_ci": [
+            1.3,
+            1.3024999999999978
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 0.68,
+            "z_crit": 14.89,
+            "justified": false
+          },
+          "40_60": {
+            "z": 0.89,
+            "z_crit": 9.85,
+            "justified": false
+          },
+          "60_80": {
+            "z": 2.69,
+            "z_crit": 4.77,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 4.4,
+              "z_crit": 13.16,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.68,
+              "z_crit": 8.07,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 2.27,
+              "z_crit": 12.06,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.9,
+              "z_crit": 7.39,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "neut_abs": {
+      "display": "Neutrophils abs. (ANC)",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        1.5,
+        7.5
+      ],
+      "textbook_male": [
+        1.5,
+        7.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 82,
+          "n_final": 3182,
+          "mean": 4.003016970458831,
+          "sd": 1.3364348728875084,
+          "median": 3.9,
+          "lrl": 1.8,
+          "url": 7.0,
+          "lrl_ci": [
+            1.7,
+            1.8
+          ],
+          "url_ci": [
+            6.9,
+            7.1
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 39,
+          "n_final": 1460,
+          "mean": 3.798356164383562,
+          "sd": 1.2600238405205968,
+          "median": 3.7,
+          "lrl": 1.7,
+          "url": 6.6,
+          "lrl_ci": [
+            1.6,
+            1.8
+          ],
+          "url_ci": [
+            6.4,
+            6.7
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 8,
+          "n_final": 285,
+          "mean": 3.3357894736842106,
+          "sd": 1.0465485651342614,
+          "median": 3.3,
+          "lrl": 1.4,
+          "url": 5.4899999999999975,
+          "lrl_ci": [
+            1.3,
+            1.6
+          ],
+          "url_ci": [
+            5.2,
+            5.7
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 63,
+          "n_final": 2768,
+          "mean": 3.801842485549133,
+          "sd": 1.3619540750474592,
+          "median": 3.6,
+          "lrl": 1.6,
+          "url": 6.8,
+          "lrl_ci": [
+            1.5,
+            1.7
+          ],
+          "url_ci": [
+            6.7,
+            6.9
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 38,
+          "n_final": 1133,
+          "mean": 3.815357458075904,
+          "sd": 1.2683886929990382,
+          "median": 3.7,
+          "lrl": 1.6,
+          "url": 6.8,
+          "lrl_ci": [
+            1.5,
+            1.8
+          ],
+          "url_ci": [
+            6.5,
+            6.9
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 8,
+          "n_final": 326,
+          "mean": 3.7631901840490802,
+          "sd": 1.323629372025253,
+          "median": 3.6,
+          "lrl": 1.7125,
+          "url": 6.6,
+          "lrl_ci": [
+            1.525,
+            1.9
+          ],
+          "url_ci": [
+            6.399375,
+            7.088124999999999
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 5.73,
+            "z_crit": 14.94,
+            "justified": false
+          },
+          "40_60": {
+            "z": 0.34,
+            "z_crit": 9.86,
+            "justified": false
+          },
+          "60_80": {
+            "z": 4.45,
+            "z_crit": 4.79,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 5.04,
+              "z_crit": 13.19,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 6.59,
+              "z_crit": 8.09,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.3,
+              "z_crit": 12.09,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.63,
+              "z_crit": 7.4,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "lymph_abs": {
+      "display": "Lymphocytes abs. (ALC)",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        1.0,
+        4.0
+      ],
+      "textbook_male": [
+        1.0,
+        4.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 59,
+          "n_final": 3205,
+          "mean": 2.139219968798752,
+          "sd": 0.5499404263281492,
+          "median": 2.1,
+          "lrl": 1.2,
+          "url": 3.3,
+          "lrl_ci": [
+            1.2,
+            1.2
+          ],
+          "url_ci": [
+            3.3,
+            3.4
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 44,
+          "n_final": 1455,
+          "mean": 1.9569072164948456,
+          "sd": 0.5374989731439772,
+          "median": 1.9,
+          "lrl": 1.1,
+          "url": 3.2,
+          "lrl_ci": [
+            1.0,
+            1.1
+          ],
+          "url_ci": [
+            3.1,
+            3.2
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 7,
+          "n_final": 286,
+          "mean": 1.867832167832168,
+          "sd": 0.5123871067582849,
+          "median": 1.8,
+          "lrl": 1.0,
+          "url": 3.0,
+          "lrl_ci": [
+            0.9,
+            1.1
+          ],
+          "url_ci": [
+            2.8,
+            3.1
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 72,
+          "n_final": 2759,
+          "mean": 2.0487495469372963,
+          "sd": 0.5183063517205254,
+          "median": 2.0,
+          "lrl": 1.2,
+          "url": 3.2,
+          "lrl_ci": [
+            1.1,
+            1.2
+          ],
+          "url_ci": [
+            3.1,
+            3.2
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 25,
+          "n_final": 1146,
+          "mean": 1.9691972076788828,
+          "sd": 0.5457598856440645,
+          "median": 1.9,
+          "lrl": 1.0,
+          "url": 3.1375,
+          "lrl_ci": [
+            1.0,
+            1.1
+          ],
+          "url_ci": [
+            3.1,
+            3.3
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 7,
+          "n_final": 327,
+          "mean": 1.7834862385321102,
+          "sd": 0.5529364602777788,
+          "median": 1.7,
+          "lrl": 0.9,
+          "url": 2.9,
+          "lrl_ci": [
+            0.72925,
+            1.0
+          ],
+          "url_ci": [
+            2.7849999999999966,
+            3.2849999999999966
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 6.53,
+            "z_crit": 14.95,
+            "justified": false
+          },
+          "40_60": {
+            "z": 0.57,
+            "z_crit": 9.88,
+            "justified": false
+          },
+          "60_80": {
+            "z": 1.96,
+            "z_crit": 4.79,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 10.65,
+              "z_crit": 13.22,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 2.67,
+              "z_crit": 8.08,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 4.21,
+              "z_crit": 12.1,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 5.37,
+              "z_crit": 7.43,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "mono_abs": {
+      "display": "Monocytes abs.",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        0.2,
+        0.8
+      ],
+      "textbook_male": [
+        0.2,
+        0.8
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 104,
+          "n_final": 3160,
+          "mean": 0.4933227848101266,
+          "sd": 0.1380104537005824,
+          "median": 0.5,
+          "lrl": 0.3,
+          "url": 0.8,
+          "lrl_ci": [
+            0.3,
+            0.3
+          ],
+          "url_ci": [
+            0.8,
+            0.8
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 34,
+          "n_final": 1465,
+          "mean": 0.4741296928327645,
+          "sd": 0.13727817516244223,
+          "median": 0.5,
+          "lrl": 0.2,
+          "url": 0.8,
+          "lrl_ci": [
+            0.2,
+            0.3
+          ],
+          "url_ci": [
+            0.7,
+            0.8
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 4,
+          "n_final": 289,
+          "mean": 0.4695501730103806,
+          "sd": 0.12682065095500225,
+          "median": 0.5,
+          "lrl": 0.3,
+          "url": 0.7,
+          "lrl_ci": [
+            0.22000000000000003,
+            0.3
+          ],
+          "url_ci": [
+            0.7,
+            0.8
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 155,
+          "n_final": 2676,
+          "mean": 0.5283258594917788,
+          "sd": 0.1383925067531809,
+          "median": 0.5,
+          "lrl": 0.3,
+          "url": 0.8,
+          "lrl_ci": [
+            0.3,
+            0.3
+          ],
+          "url_ci": [
+            0.8,
+            0.8
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 54,
+          "n_final": 1117,
+          "mean": 0.5184422560429721,
+          "sd": 0.1402765111301034,
+          "median": 0.5,
+          "lrl": 0.3,
+          "url": 0.8,
+          "lrl_ci": [
+            0.3,
+            0.3
+          ],
+          "url_ci": [
+            0.8,
+            0.8
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 4,
+          "n_final": 330,
+          "mean": 0.5451515151515152,
+          "sd": 0.17361910607608202,
+          "median": 0.5,
+          "lrl": 0.3,
+          "url": 0.9,
+          "lrl_ci": [
+            0.22249999999999998,
+            0.3
+          ],
+          "url_ci": [
+            0.9,
+            1.0
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 9.64,
+            "z_crit": 14.79,
+            "justified": false
+          },
+          "40_60": {
+            "z": 8.03,
+            "z_crit": 9.84,
+            "justified": false
+          },
+          "60_80": {
+            "z": 6.24,
+            "z_crit": 4.82,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 4.42,
+              "z_crit": 13.17,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.55,
+              "z_crit": 8.11,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 1.99,
+              "z_crit": 11.93,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 2.56,
+              "z_crit": 7.37,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "eos_abs": {
+      "display": "Eosinophils abs.",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        0.0,
+        0.5
+      ],
+      "textbook_male": [
+        0.0,
+        0.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 302,
+          "n_final": 2962,
+          "mean": 0.13879135719108712,
+          "sd": 0.07868574515518151,
+          "median": 0.1,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.3,
+            0.3
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 101,
+          "n_final": 1398,
+          "mean": 0.136480686695279,
+          "sd": 0.07726297246270637,
+          "median": 0.1,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.3,
+            0.3
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 18,
+          "n_final": 275,
+          "mean": 0.13418181818181815,
+          "sd": 0.07542315926084328,
+          "median": 0.1,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.3,
+            0.3
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 341,
+          "n_final": 2490,
+          "mean": 0.15064257028112452,
+          "sd": 0.0811824324550149,
+          "median": 0.1,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.3,
+            0.3
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 139,
+          "n_final": 1032,
+          "mean": 0.15397286821705428,
+          "sd": 0.0824204124255264,
+          "median": 0.1,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.3,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.3,
+            0.3
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 4,
+          "n_final": 330,
+          "mean": 0.1903030303030303,
+          "sd": 0.11628716286034543,
+          "median": 0.2,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.5,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            0.1
+          ],
+          "url_ci": [
+            0.4,
+            0.5
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 5.45,
+            "z_crit": 14.3,
+            "justified": false
+          },
+          "40_60": {
+            "z": 5.31,
+            "z_crit": 9.55,
+            "justified": false
+          },
+          "60_80": {
+            "z": 7.15,
+            "z_crit": 4.76,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.92,
+              "z_crit": 12.79,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.46,
+              "z_crit": 7.92,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 1.1,
+              "z_crit": 11.49,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 5.27,
+              "z_crit": 7.15,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "baso_abs": {
+      "display": "Basophils abs.",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        0.0,
+        0.1
+      ],
+      "textbook_male": [
+        0.0,
+        0.1
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3264,
+          "n_outliers": 7,
+          "n_final": 3257,
+          "mean": 0.03770340804421247,
+          "sd": 0.05070153273253532,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1499,
+          "n_outliers": 3,
+          "n_final": 1496,
+          "mean": 0.03716577540106952,
+          "sd": 0.04943549486257875,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 1,
+          "n_final": 292,
+          "mean": 0.03527397260273973,
+          "sd": 0.047864287032897836,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2831,
+          "n_outliers": 7,
+          "n_final": 2824,
+          "mean": 0.03597733711048159,
+          "sd": 0.05051874912654047,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 3,
+          "n_final": 1168,
+          "mean": 0.039897260273972605,
+          "sd": 0.052534622942781786,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 1,
+          "n_final": 333,
+          "mean": 0.03483483483483484,
+          "sd": 0.04957396554631976,
+          "median": 5.397605346934028e-79,
+          "lrl": 5.397605346934028e-79,
+          "url": 0.1,
+          "lrl_ci": [
+            5.397605346934028e-79,
+            5.397605346934028e-79
+          ],
+          "url_ci": [
+            0.1,
+            0.1
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 1.33,
+            "z_crit": 15.1,
+            "justified": false
+          },
+          "40_60": {
+            "z": 1.37,
+            "z_crit": 9.99,
+            "justified": false
+          },
+          "60_80": {
+            "z": 0.11,
+            "z_crit": 4.84,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.35,
+              "z_crit": 13.35,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.61,
+              "z_crit": 8.19,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 2.17,
+              "z_crit": 12.24,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.62,
+              "z_crit": 7.5,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "rbc": {
+      "display": "RBC",
+      "unit": "\u00d710\u00b9\u00b2/L",
+      "textbook_female": [
+        3.8,
+        5.2
+      ],
+      "textbook_male": [
+        4.2,
+        5.8
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 43,
+          "n_final": 3224,
+          "mean": 4.416647022332507,
+          "sd": 0.3141889441389004,
+          "median": 4.42,
+          "lrl": 3.80575,
+          "url": 5.05,
+          "lrl_ci": [
+            3.78575,
+            3.83575
+          ],
+          "url_ci": [
+            5.02,
+            5.07
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 34,
+          "n_final": 1467,
+          "mean": 4.3625153374233125,
+          "sd": 0.30376830494073526,
+          "median": 4.36,
+          "lrl": 3.78,
+          "url": 4.98,
+          "lrl_ci": [
+            3.76,
+            3.8
+          ],
+          "url_ci": [
+            4.933499999999999,
+            5.013499999999999
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 5,
+          "n_final": 288,
+          "mean": 4.387222222222222,
+          "sd": 0.31424361805852935,
+          "median": 4.38,
+          "lrl": 3.82875,
+          "url": 5.0482499999999995,
+          "lrl_ci": [
+            3.67875,
+            3.8834999999999997
+          ],
+          "url_ci": [
+            4.943,
+            5.14
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 29,
+          "n_final": 2803,
+          "mean": 5.045437031751695,
+          "sd": 0.36046035857730047,
+          "median": 5.04,
+          "lrl": 4.36,
+          "url": 5.78,
+          "lrl_ci": [
+            4.33,
+            4.38
+          ],
+          "url_ci": [
+            5.75,
+            5.81
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 31,
+          "n_final": 1140,
+          "mean": 4.904964912280701,
+          "sd": 0.3469436332209668,
+          "median": 4.9,
+          "lrl": 4.22,
+          "url": 5.595249999999998,
+          "lrl_ci": [
+            4.18,
+            4.26
+          ],
+          "url_ci": [
+            5.55,
+            5.65
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 8,
+          "n_final": 326,
+          "mean": 4.767822085889571,
+          "sd": 0.36235704313661765,
+          "median": 4.77,
+          "lrl": 3.98125,
+          "url": 5.467499999999999,
+          "lrl_ci": [
+            3.935,
+            4.09
+          ],
+          "url_ci": [
+            5.4,
+            5.51
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 71.67,
+            "z_crit": 15.03,
+            "justified": true
+          },
+          "40_60": {
+            "z": 41.79,
+            "z_crit": 9.89,
+            "justified": true
+          },
+          "60_80": {
+            "z": 13.94,
+            "z_crit": 4.8,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 5.6,
+              "z_crit": 13.26,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.23,
+              "z_crit": 8.11,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 11.4,
+              "z_crit": 12.16,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 6.08,
+              "z_crit": 7.41,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "hb_gdl": {
+      "display": "Hemoglobin",
+      "unit": "g/dL",
+      "textbook_female": [
+        12.0,
+        16.0
+      ],
+      "textbook_male": [
+        13.0,
+        17.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 97,
+          "n_final": 3170,
+          "mean": 13.363817034700316,
+          "sd": 0.9149851340220038,
+          "median": 13.4,
+          "lrl": 11.422500000000001,
+          "url": 15.1,
+          "lrl_ci": [
+            11.4,
+            11.6
+          ],
+          "url_ci": [
+            15.0,
+            15.1
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 50,
+          "n_final": 1451,
+          "mean": 13.349138525155064,
+          "sd": 0.9732088492434825,
+          "median": 13.4,
+          "lrl": 11.3,
+          "url": 15.2,
+          "lrl_ci": [
+            11.2,
+            11.4
+          ],
+          "url_ci": [
+            15.0,
+            15.3
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 4,
+          "n_final": 289,
+          "mean": 13.613840830449826,
+          "sd": 0.9210588650626078,
+          "median": 13.6,
+          "lrl": 12.0,
+          "url": 15.48,
+          "lrl_ci": [
+            11.8,
+            12.1
+          ],
+          "url_ci": [
+            15.2,
+            15.8
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 28,
+          "n_final": 2804,
+          "mean": 15.3410485021398,
+          "sd": 0.945523904480224,
+          "median": 15.4,
+          "lrl": 13.5,
+          "url": 17.2,
+          "lrl_ci": [
+            13.4,
+            13.5
+          ],
+          "url_ci": [
+            17.1,
+            17.3
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 43,
+          "n_final": 1128,
+          "mean": 15.10744680851064,
+          "sd": 0.8979012534110401,
+          "median": 15.1,
+          "lrl": 13.3,
+          "url": 16.9,
+          "lrl_ci": [
+            13.2,
+            13.5
+          ],
+          "url_ci": [
+            16.8,
+            17.0
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 8,
+          "n_final": 326,
+          "mean": 14.870858895705522,
+          "sd": 1.0103665131018278,
+          "median": 14.95,
+          "lrl": 12.8125,
+          "url": 16.7,
+          "lrl_ci": [
+            12.5,
+            13.0
+          ],
+          "url_ci": [
+            16.5,
+            16.8
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 81.89,
+            "z_crit": 14.97,
+            "justified": true
+          },
+          "40_60": {
+            "z": 47.55,
+            "z_crit": 9.83,
+            "justified": true
+          },
+          "60_80": {
+            "z": 16.14,
+            "z_crit": 4.8,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.48,
+              "z_crit": 13.16,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.42,
+              "z_crit": 8.08,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 7.27,
+              "z_crit": 12.14,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.81,
+              "z_crit": 7.38,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "hct": {
+      "display": "Hematocrit",
+      "unit": "%",
+      "textbook_female": [
+        35.0,
+        47.0
+      ],
+      "textbook_male": [
+        41.0,
+        53.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 68,
+          "n_final": 3199,
+          "mean": 39.30371991247265,
+          "sd": 2.6603853711497107,
+          "median": 39.3,
+          "lrl": 34.0,
+          "url": 44.5,
+          "lrl_ci": [
+            33.9,
+            34.2
+          ],
+          "url_ci": [
+            44.3,
+            44.7
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 56,
+          "n_final": 1445,
+          "mean": 39.282214532871976,
+          "sd": 2.691284913016392,
+          "median": 39.3,
+          "lrl": 33.7,
+          "url": 44.5,
+          "lrl_ci": [
+            33.41,
+            34.01
+          ],
+          "url_ci": [
+            44.3,
+            44.704499999999996
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 4,
+          "n_final": 289,
+          "mean": 40.07647058823529,
+          "sd": 2.729596022206298,
+          "median": 40.2,
+          "lrl": 35.04,
+          "url": 45.36,
+          "lrl_ci": [
+            34.64,
+            35.8
+          ],
+          "url_ci": [
+            44.86,
+            46.34
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 22,
+          "n_final": 2810,
+          "mean": 45.10946619217082,
+          "sd": 2.764418700360641,
+          "median": 45.1,
+          "lrl": 39.7,
+          "url": 50.7,
+          "lrl_ci": [
+            39.5,
+            39.8225
+          ],
+          "url_ci": [
+            50.5,
+            50.9
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 16,
+          "n_final": 1155,
+          "mean": 44.30450216450216,
+          "sd": 2.8312927932414844,
+          "median": 44.3,
+          "lrl": 38.3,
+          "url": 49.9,
+          "lrl_ci": [
+            37.885,
+            38.8
+          ],
+          "url_ci": [
+            49.31499999999998,
+            50.3
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 8,
+          "n_final": 326,
+          "mean": 43.90061349693251,
+          "sd": 2.929720321280679,
+          "median": 43.95,
+          "lrl": 38.0,
+          "url": 49.787499999999994,
+          "lrl_ci": [
+            37.1625,
+            38.449999999999996
+          ],
+          "url_ci": [
+            48.924375,
+            50.575
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 82.67,
+            "z_crit": 15.01,
+            "justified": true
+          },
+          "40_60": {
+            "z": 45.94,
+            "z_crit": 9.87,
+            "justified": true
+          },
+          "60_80": {
+            "z": 16.75,
+            "z_crit": 4.8,
+            "justified": true
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.25,
+              "z_crit": 13.2,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.53,
+              "z_crit": 8.06,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 8.19,
+              "z_crit": 12.19,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 2.21,
+              "z_crit": 7.45,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "mcv": {
+      "display": "MCV",
+      "unit": "fL",
+      "textbook_female": [
+        80.0,
+        100.0
+      ],
+      "textbook_male": [
+        80.0,
+        100.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 136,
+          "n_final": 3131,
+          "mean": 89.33478122005748,
+          "sd": 4.208932473198059,
+          "median": 89.4,
+          "lrl": 80.5,
+          "url": 96.975,
+          "lrl_ci": [
+            80.025,
+            80.9
+          ],
+          "url_ci": [
+            96.8,
+            97.4
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 81,
+          "n_final": 1420,
+          "mean": 90.56225352112676,
+          "sd": 4.288085727078138,
+          "median": 90.8,
+          "lrl": 81.1,
+          "url": 98.35249999999999,
+          "lrl_ci": [
+            80.7475,
+            81.695
+          ],
+          "url_ci": [
+            98.05249999999998,
+            98.9
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 6,
+          "n_final": 287,
+          "mean": 91.6425087108014,
+          "sd": 4.217795049900577,
+          "median": 91.7,
+          "lrl": 83.915,
+          "url": 99.57,
+          "lrl_ci": [
+            80.845,
+            84.50225
+          ],
+          "url_ci": [
+            98.97,
+            100.3
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 85,
+          "n_final": 2747,
+          "mean": 89.69486712777575,
+          "sd": 3.699235055397853,
+          "median": 89.7,
+          "lrl": 82.3,
+          "url": 96.93499999999999,
+          "lrl_ci": [
+            82.0,
+            82.565
+          ],
+          "url_ci": [
+            96.6,
+            97.13499999999999
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 41,
+          "n_final": 1130,
+          "mean": 90.77477876106195,
+          "sd": 3.8646877635731016,
+          "median": 90.7,
+          "lrl": 83.1225,
+          "url": 98.4,
+          "lrl_ci": [
+            82.443875,
+            83.8
+          ],
+          "url_ci": [
+            98.07749999999999,
+            98.6
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 15,
+          "n_final": 319,
+          "mean": 92.24764890282131,
+          "sd": 3.9110373315040867,
+          "median": 92.3,
+          "lrl": 84.585,
+          "url": 99.80499999999999,
+          "lrl_ci": [
+            83.6,
+            85.495
+          ],
+          "url_ci": [
+            98.8,
+            100.9
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 3.49,
+            "z_crit": 14.85,
+            "justified": false
+          },
+          "40_60": {
+            "z": 1.31,
+            "z_crit": 9.78,
+            "justified": false
+          },
+          "60_80": {
+            "z": 1.83,
+            "z_crit": 4.77,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 9.0,
+              "z_crit": 13.06,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.95,
+              "z_crit": 8.0,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 8.01,
+              "z_crit": 12.06,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 5.96,
+              "z_crit": 7.37,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "mch": {
+      "display": "MCH",
+      "unit": "pg",
+      "textbook_female": [
+        27.0,
+        33.0
+      ],
+      "textbook_male": [
+        27.0,
+        33.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 146,
+          "n_final": 3121,
+          "mean": 30.37459147709068,
+          "sd": 1.7004387729511292,
+          "median": 30.5,
+          "lrl": 26.7,
+          "url": 33.6,
+          "lrl_ci": [
+            26.6,
+            26.8
+          ],
+          "url_ci": [
+            33.4,
+            33.6
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 94,
+          "n_final": 1407,
+          "mean": 30.77782515991471,
+          "sd": 1.693042440770847,
+          "median": 30.9,
+          "lrl": 27.015,
+          "url": 34.0,
+          "lrl_ci": [
+            26.9,
+            27.3
+          ],
+          "url_ci": [
+            33.8,
+            34.2
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 7,
+          "n_final": 286,
+          "mean": 31.070629370629373,
+          "sd": 1.6359698949673869,
+          "median": 31.25,
+          "lrl": 27.8,
+          "url": 33.9,
+          "lrl_ci": [
+            27.6,
+            28.100625
+          ],
+          "url_ci": [
+            33.6,
+            34.4
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 82,
+          "n_final": 2750,
+          "mean": 30.551890909090908,
+          "sd": 1.4717918996514057,
+          "median": 30.6,
+          "lrl": 27.4,
+          "url": 33.3,
+          "lrl_ci": [
+            27.3,
+            27.5
+          ],
+          "url_ci": [
+            33.3,
+            33.4
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 48,
+          "n_final": 1123,
+          "mean": 30.93891362422083,
+          "sd": 1.4776678265243013,
+          "median": 30.9,
+          "lrl": 27.8,
+          "url": 33.9,
+          "lrl_ci": [
+            27.7,
+            28.005
+          ],
+          "url_ci": [
+            33.7,
+            34.1
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 16,
+          "n_final": 318,
+          "mean": 31.321698113207546,
+          "sd": 1.5019443581401777,
+          "median": 31.4,
+          "lrl": 28.3,
+          "url": 34.5,
+          "lrl_ci": [
+            27.8,
+            28.785375
+          ],
+          "url_ci": [
+            33.9,
+            34.61925
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 4.28,
+            "z_crit": 14.84,
+            "justified": false
+          },
+          "40_60": {
+            "z": 2.55,
+            "z_crit": 9.74,
+            "justified": false
+          },
+          "60_80": {
+            "z": 1.96,
+            "z_crit": 4.76,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 7.41,
+              "z_crit": 13.03,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 2.74,
+              "z_crit": 7.97,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 7.4,
+              "z_crit": 12.05,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.03,
+              "z_crit": 7.35,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "mchc": {
+      "display": "MCHC",
+      "unit": "g/dL",
+      "textbook_female": [
+        31.5,
+        36.5
+      ],
+      "textbook_male": [
+        31.5,
+        36.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 55,
+          "n_final": 3212,
+          "mean": 33.928082191780824,
+          "sd": 0.8688360298746102,
+          "median": 34.0,
+          "lrl": 32.1,
+          "url": 35.6,
+          "lrl_ci": [
+            32.0,
+            32.2
+          ],
+          "url_ci": [
+            35.5,
+            35.7
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 41,
+          "n_final": 1460,
+          "mean": 33.91568493150685,
+          "sd": 0.8539834551387887,
+          "median": 33.9,
+          "lrl": 32.3,
+          "url": 35.6,
+          "lrl_ci": [
+            32.1,
+            32.3
+          ],
+          "url_ci": [
+            35.5,
+            35.7
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 12,
+          "n_final": 281,
+          "mean": 33.86227758007117,
+          "sd": 0.6914791143131265,
+          "median": 33.8,
+          "lrl": 32.6,
+          "url": 35.4,
+          "lrl_ci": [
+            32.3,
+            32.7
+          ],
+          "url_ci": [
+            35.0,
+            35.5
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2833,
+          "n_outliers": 63,
+          "n_final": 2770,
+          "mean": 34.02032490974729,
+          "sd": 0.8155286196242464,
+          "median": 34.0,
+          "lrl": 32.4,
+          "url": 35.67750000000001,
+          "lrl_ci": [
+            32.3,
+            32.5
+          ],
+          "url_ci": [
+            35.6,
+            35.7
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 21,
+          "n_final": 1150,
+          "mean": 34.02626086956521,
+          "sd": 0.7947975541477923,
+          "median": 34.0,
+          "lrl": 32.5,
+          "url": 35.6,
+          "lrl_ci": [
+            32.4,
+            32.5
+          ],
+          "url_ci": [
+            35.4,
+            35.7
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 10,
+          "n_final": 324,
+          "mean": 33.88395061728395,
+          "sd": 0.7278547791950956,
+          "median": 33.9,
+          "lrl": 32.4,
+          "url": 35.2925,
+          "lrl_ci": [
+            32.3,
+            32.5075
+          ],
+          "url_ci": [
+            35.1,
+            35.4925
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 4.23,
+            "z_crit": 14.98,
+            "justified": false
+          },
+          "40_60": {
+            "z": 3.41,
+            "z_crit": 9.89,
+            "justified": false
+          },
+          "60_80": {
+            "z": 0.38,
+            "z_crit": 4.76,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.46,
+              "z_crit": 13.24,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 1.14,
+              "z_crit": 8.08,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.21,
+              "z_crit": 12.12,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.04,
+              "z_crit": 7.43,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "rdw": {
+      "display": "RDW",
+      "unit": "%",
+      "textbook_female": [
+        11.5,
+        15.0
+      ],
+      "textbook_male": [
+        11.5,
+        15.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3265,
+          "n_outliers": 166,
+          "n_final": 3099,
+          "mean": 12.6892223297838,
+          "sd": 0.8261463319061626,
+          "median": 12.6,
+          "lrl": 11.3,
+          "url": 14.6,
+          "lrl_ci": [
+            11.3,
+            11.4
+          ],
+          "url_ci": [
+            14.5,
+            14.7
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1497,
+          "n_outliers": 107,
+          "n_final": 1390,
+          "mean": 12.777410071942445,
+          "sd": 0.8073861140244518,
+          "median": 12.6,
+          "lrl": 11.5,
+          "url": 14.7,
+          "lrl_ci": [
+            11.4,
+            11.5
+          ],
+          "url_ci": [
+            14.527499999999986,
+            14.8
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 1,
+          "n_final": 292,
+          "mean": 12.980479452054794,
+          "sd": 0.8492137719703833,
+          "median": 12.9,
+          "lrl": 11.5,
+          "url": 14.7,
+          "lrl_ci": [
+            11.4,
+            11.6
+          ],
+          "url_ci": [
+            14.472499999999997,
+            14.872499999999997
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 38,
+          "n_final": 2794,
+          "mean": 12.595669291338584,
+          "sd": 0.68146595380541,
+          "median": 12.5,
+          "lrl": 11.4,
+          "url": 14.1,
+          "lrl_ci": [
+            11.4,
+            11.5
+          ],
+          "url_ci": [
+            14.0,
+            14.1
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 32,
+          "n_final": 1139,
+          "mean": 12.746883230904302,
+          "sd": 0.6824542418013425,
+          "median": 12.7,
+          "lrl": 11.6,
+          "url": 14.2,
+          "lrl_ci": [
+            11.5,
+            11.6
+          ],
+          "url_ci": [
+            14.1,
+            14.3
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 333,
+          "n_outliers": 12,
+          "n_final": 321,
+          "mean": 13.042367601246108,
+          "sd": 0.7352801350145673,
+          "median": 13.0,
+          "lrl": 11.8,
+          "url": 14.5,
+          "lrl_ci": [
+            11.6,
+            11.9
+          ],
+          "url_ci": [
+            14.4,
+            14.7
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 4.76,
+            "z_crit": 14.87,
+            "justified": false
+          },
+          "40_60": {
+            "z": 1.03,
+            "z_crit": 9.74,
+            "justified": false
+          },
+          "60_80": {
+            "z": 0.96,
+            "z_crit": 4.79,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 3.36,
+              "z_crit": 12.97,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 3.75,
+              "z_crit": 7.94,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 6.31,
+              "z_crit": 12.14,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 6.46,
+              "z_crit": 7.4,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    },
+    "plt": {
+      "display": "Platelets",
+      "unit": "\u00d710\u2079/L",
+      "textbook_female": [
+        150.0,
+        450.0
+      ],
+      "textbook_male": [
+        150.0,
+        450.0
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3266,
+          "n_outliers": 62,
+          "n_final": 3204,
+          "mean": 259.7674781523096,
+          "sd": 55.70480425749698,
+          "median": 254.0,
+          "lrl": 163.0,
+          "url": 379.0,
+          "lrl_ci": [
+            160.0,
+            165.0
+          ],
+          "url_ci": [
+            376.0,
+            385.0
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 30,
+          "n_final": 1471,
+          "mean": 256.725356900068,
+          "sd": 56.09249555217253,
+          "median": 251.0,
+          "lrl": 158.5,
+          "url": 378.0,
+          "lrl_ci": [
+            153.75,
+            166.03749999999997
+          ],
+          "url_ci": [
+            372.0,
+            386.0
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 8,
+          "n_final": 285,
+          "mean": 242.52280701754387,
+          "sd": 51.867487637083876,
+          "median": 236.0,
+          "lrl": 150.2,
+          "url": 357.29999999999984,
+          "lrl_ci": [
+            147.0,
+            160.0
+          ],
+          "url_ci": [
+            338.79499999999996,
+            381.77499999999895
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 57,
+          "n_final": 2775,
+          "mean": 237.03927927927927,
+          "sd": 46.78577448867988,
+          "median": 234.0,
+          "lrl": 152.0,
+          "url": 338.0,
+          "lrl_ci": [
+            149.0,
+            155.0
+          ],
+          "url_ci": [
+            332.6500000000001,
+            342.0
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 20,
+          "n_final": 1151,
+          "mean": 237.07211120764552,
+          "sd": 49.94350734466646,
+          "median": 233.0,
+          "lrl": 149.0,
+          "url": 346.25,
+          "lrl_ci": [
+            141.0,
+            153.2625
+          ],
+          "url_ci": [
+            341.0,
+            353.0
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 5,
+          "n_final": 329,
+          "mean": 223.5987841945289,
+          "sd": 48.984350397684814,
+          "median": 219.0,
+          "lrl": 131.6,
+          "url": 336.4000000000002,
+          "lrl_ci": [
+            121.99,
+            153.2
+          ],
+          "url_ci": [
+            309.8,
+            343.0
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 17.15,
+            "z_crit": 14.97,
+            "justified": true
+          },
+          "40_60": {
+            "z": 9.47,
+            "z_crit": 9.92,
+            "justified": false
+          },
+          "60_80": {
+            "z": 4.63,
+            "z_crit": 4.8,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 1.73,
+              "z_crit": 13.24,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.17,
+              "z_crit": 8.11,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 0.02,
+              "z_crit": 12.13,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 4.38,
+              "z_crit": 7.45,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "sex"
+      ],
+      "notes": []
+    },
+    "mpv": {
+      "display": "MPV",
+      "unit": "fL",
+      "textbook_female": [
+        7.0,
+        11.5
+      ],
+      "textbook_male": [
+        7.0,
+        11.5
+      ],
+      "partitions": {
+        "female_20_40": {
+          "partition": "female_20_40",
+          "n_raw": 3267,
+          "n_outliers": 39,
+          "n_final": 3228,
+          "mean": 8.231691449814127,
+          "sd": 0.8429896413266017,
+          "median": 8.1,
+          "lrl": 6.7,
+          "url": 10.032499999999981,
+          "lrl_ci": [
+            6.7,
+            6.8
+          ],
+          "url_ci": [
+            10.0,
+            10.2
+          ]
+        },
+        "female_40_60": {
+          "partition": "female_40_60",
+          "n_raw": 1501,
+          "n_outliers": 30,
+          "n_final": 1471,
+          "mean": 8.142760027192386,
+          "sd": 0.8103750682353291,
+          "median": 8.1,
+          "lrl": 6.7,
+          "url": 9.8,
+          "lrl_ci": [
+            6.6,
+            6.8
+          ],
+          "url_ci": [
+            9.8,
+            9.9
+          ]
+        },
+        "female_60_80": {
+          "partition": "female_60_80",
+          "n_raw": 293,
+          "n_outliers": 4,
+          "n_final": 289,
+          "mean": 8.171280276816608,
+          "sd": 0.8860642265283349,
+          "median": 8.1,
+          "lrl": 6.6,
+          "url": 10.1,
+          "lrl_ci": [
+            6.4,
+            6.8
+          ],
+          "url_ci": [
+            9.88,
+            10.2
+          ]
+        },
+        "male_20_40": {
+          "partition": "male_20_40",
+          "n_raw": 2832,
+          "n_outliers": 49,
+          "n_final": 2783,
+          "mean": 8.153287818900468,
+          "sd": 0.8037894203257194,
+          "median": 8.1,
+          "lrl": 6.7,
+          "url": 9.9,
+          "lrl_ci": [
+            6.7,
+            6.8
+          ],
+          "url_ci": [
+            9.8,
+            10.0
+          ]
+        },
+        "male_40_60": {
+          "partition": "male_40_60",
+          "n_raw": 1171,
+          "n_outliers": 29,
+          "n_final": 1142,
+          "mean": 8.010858143607706,
+          "sd": 0.782580597624613,
+          "median": 8.0,
+          "lrl": 6.6,
+          "url": 9.6,
+          "lrl_ci": [
+            6.6,
+            6.6
+          ],
+          "url_ci": [
+            9.6,
+            9.7
+          ]
+        },
+        "male_60_80": {
+          "partition": "male_60_80",
+          "n_raw": 334,
+          "n_outliers": 5,
+          "n_final": 329,
+          "mean": 8.027051671732522,
+          "sd": 0.8174716376850348,
+          "median": 8.0,
+          "lrl": 6.420000000000001,
+          "url": 9.7,
+          "lrl_ci": [
+            6.3,
+            6.8
+          ],
+          "url_ci": [
+            9.5,
+            9.881
+          ]
+        }
+      },
+      "harris_boyd": {
+        "sex_within_age": {
+          "20_40": {
+            "z": 3.69,
+            "z_crit": 15.01,
+            "justified": false
+          },
+          "40_60": {
+            "z": 4.21,
+            "z_crit": 9.9,
+            "justified": false
+          },
+          "60_80": {
+            "z": 2.09,
+            "z_crit": 4.81,
+            "justified": false
+          }
+        },
+        "age_within_sex": {
+          "female": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 3.44,
+              "z_crit": 13.27,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.51,
+              "z_crit": 8.12,
+              "justified": false
+            }
+          ],
+          "male": [
+            {
+              "pair": "20-40 vs 40-60",
+              "z": 5.14,
+              "z_crit": 12.13,
+              "justified": false
+            },
+            {
+              "pair": "40-60 vs 60-80",
+              "z": 0.32,
+              "z_crit": 7.43,
+              "justified": false
+            }
+          ]
+        }
+      },
+      "recommended_partitioning": [
+        "collapsed"
+      ],
+      "notes": []
+    }
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated_from": {
+      "empirical_refs": "empirical_refs.json",
+      "master": "nhanes_master.parquet",
+      "master_n": 119555
+    },
+    "method": {
+      "reference_intervals": "non-parametric 2.5/97.5 percentiles on healthy cohort (CLSI EP28-A3c); pooled across age bands; sex partition only when Harris-Boyd justified",
+      "severity_bands": "percentiles on full master (adult) for counts-type markers only; WHO/clinical grading retained for hemoglobin"
+    },
+    "notes": [
+      "This config is opt-in. The engine falls back to its textbook defaults when the file is not loaded.",
+      "Pediatric reference ranges are NOT affected \u2014 they remain sourced from NHS paediatric haematology tables.",
+      "Hemoglobin severity bands remain WHO-based (mild 10-12/10-13, moderate 7-10, severe <7) as these are clinical grading definitions, not statistical tail percentiles."
+    ]
+  },
+  "reference_intervals": {
+    "wbc": {
+      "partition_by": "none",
+      "any": [
+        3.21,
+        10.8
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        4.0,
+        11.0
+      ],
+      "textbook_male": [
+        4.0,
+        11.0
+      ]
+    },
+    "neut_pct": {
+      "partition_by": "none",
+      "any": [
+        38.49,
+        75.14
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        45.0,
+        75.0
+      ],
+      "textbook_male": [
+        45.0,
+        75.0
+      ]
+    },
+    "lymph_pct": {
+      "partition_by": "sex",
+      "female": [
+        17.06,
+        47.2
+      ],
+      "male": [
+        15.22,
+        47.33
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        20.0,
+        45.0
+      ],
+      "textbook_male": [
+        20.0,
+        45.0
+      ]
+    },
+    "mono_pct": {
+      "partition_by": "sex",
+      "female": [
+        4.3,
+        11.56
+      ],
+      "male": [
+        4.6,
+        12.98
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        2.0,
+        10.0
+      ],
+      "textbook_male": [
+        2.0,
+        10.0
+      ]
+    },
+    "eos_pct": {
+      "partition_by": "sex",
+      "female": [
+        0.49,
+        5.41
+      ],
+      "male": [
+        0.6,
+        6.39
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        0.5,
+        5.0
+      ],
+      "textbook_male": [
+        0.5,
+        5.0
+      ]
+    },
+    "baso_pct": {
+      "partition_by": "none",
+      "any": [
+        0.1,
+        1.38
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        0.0,
+        1.5
+      ],
+      "textbook_male": [
+        0.0,
+        1.5
+      ]
+    },
+    "anc": {
+      "partition_by": "none",
+      "any": [
+        1.4,
+        7.0
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        1.5,
+        7.5
+      ],
+      "textbook_male": [
+        1.5,
+        7.5
+      ]
+    },
+    "alc": {
+      "partition_by": "none",
+      "any": [
+        0.9,
+        3.3
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        1.0,
+        4.0
+      ],
+      "textbook_male": [
+        1.0,
+        4.0
+      ]
+    },
+    "amc": {
+      "partition_by": "sex",
+      "female": [
+        0.2,
+        0.8
+      ],
+      "male": [
+        0.3,
+        0.9
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        0.2,
+        0.8
+      ],
+      "textbook_male": [
+        0.2,
+        0.8
+      ]
+    },
+    "aec": {
+      "partition_by": "sex",
+      "female": [
+        0.0,
+        0.3
+      ],
+      "male": [
+        0.0,
+        0.5
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        0.0,
+        0.5
+      ],
+      "textbook_male": [
+        0.0,
+        0.5
+      ]
+    },
+    "abc": {
+      "partition_by": "none",
+      "any": [
+        0.0,
+        0.1
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        0.0,
+        0.1
+      ],
+      "textbook_male": [
+        0.0,
+        0.1
+      ]
+    },
+    "rbc": {
+      "partition_by": "sex",
+      "female": [
+        3.78,
+        5.05
+      ],
+      "male": [
+        3.98,
+        5.78
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        3.8,
+        5.2
+      ],
+      "textbook_male": [
+        4.2,
+        5.8
+      ]
+    },
+    "hgb": {
+      "partition_by": "sex",
+      "female": [
+        12.0,
+        15.48
+      ],
+      "male": [
+        13.0,
+        17.2
+      ],
+      "source": "empirical+clinical_floor",
+      "textbook_female": [
+        12.0,
+        16.0
+      ],
+      "textbook_male": [
+        13.0,
+        17.5
+      ]
+    },
+    "hct": {
+      "partition_by": "sex",
+      "female": [
+        35.0,
+        45.36
+      ],
+      "male": [
+        41.0,
+        50.7
+      ],
+      "source": "empirical+clinical_floor",
+      "textbook_female": [
+        35.0,
+        47.0
+      ],
+      "textbook_male": [
+        41.0,
+        53.0
+      ]
+    },
+    "mcv": {
+      "partition_by": "none",
+      "any": [
+        80.5,
+        99.8
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        80.0,
+        100.0
+      ],
+      "textbook_male": [
+        80.0,
+        100.0
+      ]
+    },
+    "mch": {
+      "partition_by": "none",
+      "any": [
+        26.7,
+        34.5
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        27.0,
+        33.0
+      ],
+      "textbook_male": [
+        27.0,
+        33.0
+      ]
+    },
+    "mchc": {
+      "partition_by": "none",
+      "any": [
+        32.1,
+        35.68
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        31.5,
+        36.5
+      ],
+      "textbook_male": [
+        31.5,
+        36.5
+      ]
+    },
+    "rdw": {
+      "partition_by": "none",
+      "any": [
+        11.3,
+        14.7
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        11.5,
+        15.0
+      ],
+      "textbook_male": [
+        11.5,
+        15.0
+      ]
+    },
+    "plt": {
+      "partition_by": "sex",
+      "female": [
+        150.2,
+        379.0
+      ],
+      "male": [
+        131.6,
+        346.25
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        150.0,
+        450.0
+      ],
+      "textbook_male": [
+        150.0,
+        450.0
+      ]
+    },
+    "mpv": {
+      "partition_by": "none",
+      "any": [
+        6.42,
+        10.1
+      ],
+      "source": "empirical",
+      "textbook_female": [
+        7.0,
+        11.5
+      ],
+      "textbook_male": [
+        7.0,
+        11.5
+      ]
+    }
+  },
+  "severity_bands": {
+    "wbc_high": {
+      "partition_by": "none",
+      "mild": 12.3,
+      "moderate": 13.7,
+      "severe": 19.1,
+      "n": 62691
+    },
+    "anc_high": {
+      "partition_by": "none",
+      "mild": 8.5,
+      "moderate": 9.8,
+      "severe": 13.75,
+      "n": 62523
+    },
+    "plt_high": {
+      "partition_by": "sex",
+      "male": {
+        "mild": 372.0,
+        "moderate": 409.0,
+        "severe": 542.85,
+        "n": 30078
+      },
+      "female": {
+        "mild": 424.0,
+        "moderate": 474.0,
+        "severe": 622.55,
+        "n": 32613
+      }
+    },
+    "wbc_low": {
+      "partition_by": "none",
+      "mild": 3.9,
+      "moderate": 3.4,
+      "severe": 2.67,
+      "n": 62691
+    },
+    "anc_low": {
+      "partition_by": "none",
+      "mild": 1.7,
+      "moderate": 1.4,
+      "severe": 0.9,
+      "n": 62523
+    },
+    "plt_low": {
+      "partition_by": "sex",
+      "male": {
+        "mild": 134.0,
+        "moderate": 113.0,
+        "severe": 63.0,
+        "n": 30078
+      },
+      "female": {
+        "mild": 153.0,
+        "moderate": 132.0,
+        "severe": 65.61,
+        "n": 32613
+      }
+    }
+  }
+}
