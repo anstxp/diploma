@@ -1,0 +1,481 @@
+# clusters.yaml — CHEM narrative clusters
+# ─────────────────────────────────────────────────────────────────────────────
+# Each entry defines one coherent clinical story for biochemistry results.
+# Same matching engine as CBC narrative module — see narrative_engine.py.
+#
+# 9 clinical groups covered:
+#   GLY  Glycaemia              (DM, prediabetes, hypoglycemia)
+#   KID  Kidney function        (CKD, AKI, eGFR drop)
+#   LIV  Liver function         (hepatocellular, cholestatic, mixed)
+#   LIP  Lipid disorders        (atherogenic, FH, severe TG)
+#   ELE  Electrolytes & ABS     (Na, K, Cl, HCO3 — acid-base)
+#   MIN  Minerals & bone        (Ca, Mg, P, vit D)
+#   IRN  Iron status            (deficiency, overload)
+#   INF  Inflammation           (CRP, chronic disease)
+#   SPC  Special / pancreatic   (uric acid, amylase/lipase, CK, LDH)
+# ─────────────────────────────────────────────────────────────────────────────
+
+clusters:
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                   CRITICAL / URGENT (priority ≥ 90)                  ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: severe_hypoglycemia
+    priority: 100
+    tier: critical
+    group: glycaemia
+    requires:
+      signals_any: [severe_hypoglycemia]
+    suppresses: [hypoglycemia_mild]
+
+  - id: hyperkalemia_critical
+    priority: 99
+    tier: critical
+    group: electrolytes
+    requires:
+      signals_any: [hyperkalemia]
+      lab_at_least: {potassium: 6.0}
+    suppresses: [hyperkalemia_mild, kidney_function_reduced_moderate,
+                 isolated_creatinine_high, metabolic_acidosis_pattern,
+                 hyponatremia_mild, isolated_chloride_low,
+                 diabetes_pattern, prediabetes_pattern,
+                 isolated_glucose_high, insulin_resistance_metabolic]
+
+  - id: severe_hyponatremia
+    priority: 98
+    tier: critical
+    group: electrolytes
+    requires:
+      signals_any: [hyponatremia]
+      lab_at_most: {sodium: 125}
+    suppresses: [hyponatremia_mild, hyponatremia_with_hyperglycemia]
+
+  - id: pancreatitis_pattern
+    priority: 96
+    tier: critical
+    group: special
+    requires:
+      lab_at_least: {lipase: 300}
+    suppresses: [insulin_resistance_metabolic, hypertriglyceridemia_moderate,
+                 isolated_high_chol, prediabetes_pattern, isolated_glucose_high,
+                 tg_hdl_ratio_isolated, isolated_low_hdl, atherogenic_dyslipidemia,
+                 chronic_inflammation_pattern]
+
+  - id: rhabdomyolysis_pattern
+    priority: 95
+    tier: critical
+    group: special
+    requires:
+      lab_at_least: {ck: 1500}
+    suppresses: [hepatocellular_injury_pattern, mixed_liver_pattern,
+                 isolated_creatinine_high, ck_elevated_moderate]
+
+  - id: severe_hypertriglyceridemia
+    priority: 92
+    tier: critical
+    group: lipids
+    requires:
+      lab_at_least: {trigly: 500}
+    suppresses: [hypertriglyceridemia_moderate, atherogenic_dyslipidemia,
+                 tg_hdl_ratio_isolated, isolated_low_hdl, insulin_resistance_metabolic,
+                 prediabetes_pattern, isolated_glucose_high, isolated_high_chol]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                    GLYCAEMIA — diabetes & related                    ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: diabetes_pattern
+    priority: 80
+    tier: abnormal
+    group: glycaemia
+    requires:
+      signals_any: [a1c_diabetes_range, glucose_diabetes_range]
+    # Suppress only sub-conditions of glycaemia itself.
+    # CRITICAL CLINICAL FIX (post-review):
+    #   - kidney_function_reduced_moderate, isolated_creatinine_high — REMOVED
+    #     from suppresses. Renal function is the PRIMARY target of diabetic
+    #     therapy and must NEVER be hidden under the diabetes story.
+    #   - hyperkalemia_mild, hyponatremia_mild, magnesium_low,
+    #     phosphate_disturbance, vitamin_d_deficiency — REMOVED. These are
+    #     independent electrolyte findings, not a consequence of diabetes
+    #     interpretation.
+    #   - hypertriglyceridemia_moderate, isolated_high_chol, isolated_low_hdl,
+    #     tg_hdl_ratio_isolated — REMOVED. Diabetic dyslipidemia needs its
+    #     own attention; LDL targets in diabetics are different (<70/<55).
+    suppresses: [prediabetes_pattern, isolated_glucose_high,
+                 insulin_resistance_metabolic]
+
+  - id: prediabetes_pattern
+    priority: 65
+    tier: abnormal
+    group: glycaemia
+    requires:
+      signals_any: [a1c_prediabetes_range, glucose_ifg_range]
+    suppresses: [isolated_glucose_high]
+
+  - id: insulin_resistance_metabolic
+    priority: 62
+    tier: abnormal
+    group: glycaemia
+    requires:
+      signals_any: [insulin_resistance_nafld_like, tg_hdl_ratio_high]
+    suppresses: [tg_hdl_ratio_isolated, isolated_low_hdl,
+                 hypertriglyceridemia_moderate, isolated_high_chol,
+                 prediabetes_pattern, isolated_glucose_high]
+
+  - id: hypoglycemia_mild
+    priority: 60
+    tier: abnormal
+    group: glycaemia
+    requires:
+      signals_any: [hypoglycemia]
+
+  - id: isolated_glucose_high
+    priority: 25
+    tier: minor
+    group: glycaemia
+    requires:
+      signals_any: [glucose_ifg_range]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                     KIDNEY function                                  ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: kidney_function_reduced_severe
+    priority: 88
+    tier: critical
+    group: kidney
+    requires:
+      signals_any: [egfr_low]
+      lab_at_most: {egfr: 30}
+    suppresses: [kidney_function_reduced_moderate, isolated_creatinine_high,
+                 hyperkalemia_mild, insulin_resistance_metabolic,
+                 hypertriglyceridemia_moderate, isolated_high_chol,
+                 tg_hdl_ratio_isolated]
+
+  - id: kidney_function_reduced_moderate
+    priority: 70
+    tier: abnormal
+    group: kidney
+    requires:
+      signals_any: [kidney_function_reduced, egfr_low]
+      lab_at_most: {egfr: 60}
+    suppresses: [isolated_creatinine_high]
+
+  - id: isolated_creatinine_high
+    priority: 30
+    tier: abnormal
+    group: kidney
+    requires:
+      signals_any: [creatinine_high]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                       LIVER patterns                                 ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: hepatocellular_injury_pattern
+    priority: 78
+    tier: abnormal
+    group: liver
+    requires:
+      signals_any: [transaminitis, alt_high, ast_high]
+      lab_at_least: {alt: 60}
+    suppresses: [atherogenic_dyslipidemia, insulin_resistance_metabolic,
+                 prediabetes_pattern, hypertriglyceridemia_moderate,
+                 isolated_low_hdl, tg_hdl_ratio_isolated, isolated_high_chol]
+
+  - id: cholestatic_pattern
+    priority: 76
+    tier: abnormal
+    group: liver
+    requires:
+      lab_at_least: {alp: 200}
+    suppresses: [hepatocellular_injury_pattern, mixed_liver_pattern,
+                 isolated_bilirubin_high, gilbert_syndrome_pattern]
+
+  - id: mixed_liver_pattern
+    priority: 75
+    tier: abnormal
+    group: liver
+    requires:
+      signals_all: [transaminitis]
+      lab_at_least: {alp: 150}
+    suppresses: [hepatocellular_injury_pattern, isolated_bilirubin_high]
+
+  - id: gilbert_syndrome_pattern
+    priority: 50
+    tier: info
+    group: liver
+    requires:
+      signals_any: [bilirubin_high]
+      signals_none: [transaminitis, alt_high, ast_high, alp_high, ggt_high]
+      lab_at_most: {bilirubin_total: 4.0}
+    suppresses: [isolated_bilirubin_high]
+
+  - id: isolated_bilirubin_high
+    priority: 35
+    tier: abnormal
+    group: liver
+    requires:
+      signals_any: [bilirubin_high]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                        LIPID disorders                               ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: familial_hypercholesterolemia_suspect
+    priority: 85
+    tier: abnormal
+    group: lipids
+    requires:
+      signals_any: [fh_like_ldl_ge190]
+    suppresses: [atherogenic_dyslipidemia, isolated_high_chol]
+
+  - id: atherogenic_dyslipidemia
+    priority: 68
+    tier: abnormal
+    group: lipids
+    requires:
+      signals_any: [atherogenic_dyslipidemia_pattern]
+    suppresses: [tg_hdl_ratio_isolated, isolated_low_hdl, isolated_high_chol,
+                 hypertriglyceridemia_moderate, insulin_resistance_metabolic]
+
+  - id: hypertriglyceridemia_moderate
+    priority: 55
+    tier: abnormal
+    group: lipids
+    requires:
+      signals_any: [hypertriglyceridemia]
+
+  - id: isolated_low_hdl
+    priority: 35
+    tier: minor
+    group: lipids
+    requires:
+      signals_any: [low_hdl]
+
+  - id: tg_hdl_ratio_isolated
+    priority: 32
+    tier: minor
+    group: lipids
+    requires:
+      signals_any: [tg_hdl_ratio_high]
+
+  - id: isolated_high_chol
+    priority: 30
+    tier: minor
+    group: lipids
+    requires:
+      signals_any: [tchol_high]
+      lab_at_least: {tchol: 240}
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                  ELECTROLYTES & acid-base                            ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: hyponatremia_with_hyperglycemia
+    priority: 73
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [hyponatremia_with_hyperglycemia_corrected_na]
+    suppresses: [hyponatremia_mild]
+
+  - id: hyponatremia_mild
+    priority: 50
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [hyponatremia]
+
+  - id: hyperkalemia_mild
+    priority: 55
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [hyperkalemia]
+
+  - id: hypokalemia_pattern
+    priority: 60
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [hypokalemia]
+
+  - id: metabolic_acidosis_pattern
+    priority: 72
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [bicarbonate_low]
+
+  - id: metabolic_alkalosis_pattern
+    priority: 55
+    tier: abnormal
+    group: electrolytes
+    requires:
+      signals_any: [bicarbonate_high]
+
+  - id: isolated_chloride_low
+    priority: 20
+    tier: minor
+    group: electrolytes
+    requires:
+      signals_any: [chloride_low]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                    MINERALS & bone health                            ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: vitamin_d_deficiency
+    priority: 45
+    tier: abnormal
+    group: minerals
+    requires:
+      signals_any: [vitd_deficiency]
+
+  - id: hypocalcemia_pattern
+    priority: 65
+    tier: abnormal
+    group: minerals
+    requires:
+      lab_at_most: {calcium: 8.4}
+    suppresses: [magnesium_low, phosphate_disturbance]
+
+  - id: hypercalcemia_pattern
+    priority: 70
+    tier: abnormal
+    group: minerals
+    requires:
+      lab_at_least: {calcium: 10.6}
+
+  - id: magnesium_low
+    priority: 50
+    tier: abnormal
+    group: minerals
+    requires:
+      lab_at_most: {magnesium: 1.6}
+
+  - id: phosphate_disturbance
+    priority: 40
+    tier: minor
+    group: minerals
+    requires:
+      lab_at_least: {phosphate: 4.6}
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                       IRON status                                    ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: iron_deficiency
+    priority: 65
+    tier: abnormal
+    group: iron
+    requires:
+      signals_any: [iron_deficiency_likely, low_tsat]
+    suppresses: [isolated_low_iron, isolated_low_tsat]
+
+  - id: iron_overload
+    priority: 70
+    tier: abnormal
+    group: iron
+    requires:
+      signals_any: [high_tsat, ferritin_high_isolated]
+      lab_at_least: {ferritin: 300}
+    suppresses: [ferritin_high_inflammation]
+
+  - id: ferritin_high_inflammation
+    priority: 50
+    tier: abnormal
+    group: iron
+    requires:
+      signals_any: [ferritin_high_possible_inflammation]
+
+  - id: isolated_low_iron
+    priority: 30
+    tier: minor
+    group: iron
+    requires:
+      signals_any: [iron_low]
+
+  - id: isolated_low_tsat
+    priority: 30
+    tier: minor
+    group: iron
+    requires:
+      signals_any: [low_tsat]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                      INFLAMMATION                                    ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: acute_inflammation_pattern
+    priority: 60
+    tier: abnormal
+    group: inflammation
+    requires:
+      signals_any: [crp_high]
+      lab_at_least: {crp: 30}
+    suppresses: [chronic_inflammation_pattern, isolated_high_chol]
+
+  - id: chronic_inflammation_pattern
+    priority: 45
+    tier: abnormal
+    group: inflammation
+    requires:
+      signals_any: [crp_high]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                  SPECIAL findings                                    ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: hyperuricemia_gout_risk
+    priority: 50
+    tier: abnormal
+    group: special
+    requires:
+      signals_any: [uric_acid_high]
+
+  - id: ck_elevated_moderate
+    priority: 40
+    tier: abnormal
+    group: special
+    requires:
+      signals_any: [ck_high]
+
+  # ╔══════════════════════════════════════════════════════════════════════╗
+  # ║                     TERMINAL clusters                                ║
+  # ╚══════════════════════════════════════════════════════════════════════╝
+
+  - id: all_normal
+    priority: 0
+    tier: normal
+    group: general
+    requires:
+      signals_none: [
+        a1c_diabetes_range, a1c_prediabetes_range, glucose_diabetes_range,
+        glucose_ifg_range, hypoglycemia, severe_hypoglycemia,
+        kidney_function_reduced, egfr_low, creatinine_high,
+        transaminitis, alt_high, ast_high, alp_high, ggt_high,
+        bilirubin_high,
+        fh_like_ldl_ge190, atherogenic_dyslipidemia_pattern,
+        tg_very_high_pancreatitis_risk, hypertriglyceridemia,
+        non_hdl_high, tchol_high, low_hdl, tg_hdl_ratio_high,
+        insulin_resistance_nafld_like,
+        hyponatremia, hyperkalemia, hypokalemia,
+        bicarbonate_high, bicarbonate_low, chloride_low,
+        hyponatremia_with_hyperglycemia_corrected_na,
+        vitd_deficiency, calcium_low, calcium_high, magnesium_low,
+        phosphate_high, phosphate_low,
+        iron_deficiency_likely, iron_low, low_tsat, high_tsat,
+        ferritin_high_possible_inflammation, ferritin_high_isolated,
+        crp_high,
+        uric_acid_high, ck_high, lipase_high, amylase_high,
+      ]
+
+  - id: incomplete
+    priority: -1
+    tier: info
+    group: general
+    requires:
+      signals_any: [missing_core_chem]

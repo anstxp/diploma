@@ -1,0 +1,18 @@
+# Hemax · Chem API — Python dependencies
+# Install: pip install -r requirements.txt
+
+# Web framework
+fastapi>=0.111.0,<1.0.0
+uvicorn[standard]>=0.29.0,<1.0.0
+
+# Data validation (FastAPI dependency)
+pydantic>=2.7.0,<3.0.0
+
+# Testing (no extra server needed — uses TestClient)
+httpx>=0.27.0          # required by FastAPI TestClient
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# Optional: production server extras
+# gunicorn>=22.0.0       # for production multi-worker deployments
+jinja2>=3.0
