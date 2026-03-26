@@ -1,0 +1,191 @@
+# HEMAX_RISK narrative clusters
+# Each cluster matches a constellation of risk-tier patterns and renders
+# a coherent personalized story. Priority resolves overlap; suppression
+# prevents the user from getting overwhelmed.
+#
+# Trigger conditions:
+#   risk_tier_at_least: {target: tier_name}    — task has tier ≥ this
+#   risk_tier_at_most:  {target: tier_name}    — task has tier ≤ this
+#   probability_at_least: {target: 0.5}        — calibrated prob threshold
+#   probability_at_most:  {target: 0.1}
+#   any_at_least: {tier: very_high, count: 2}  — N tasks at this tier or higher
+#   labs:                                       — optional lab thresholds (passed in)
+#     lab_at_least: {hba1c: 6.5}
+#     lab_at_most:  {hdl: 40}
+
+clusters:
+  # =====================================================================
+  # CRITICAL — multi-system high risk
+  # =====================================================================
+
+  - id: cardiometabolic_high_risk
+    priority: 95
+    tier: critical
+    group: cardiometabolic
+    requires:
+      any_at_least: {tier: high, count: 3}
+    suppresses: [diabetes_alone, htn_alone, dyslipidemia_alone,
+                 cvd_high_risk, cardiometabolic_moderate_risk,
+                 prediabetes_metabolic, isolated_chd_risk,
+                 isolated_chf_risk, isolated_stroke_risk,
+                 htn_high_risk, dyslipidemia_high_risk]
+
+  - id: cvd_high_risk
+    priority: 90
+    tier: critical
+    group: cardiovascular
+    requires:
+      any_at_least: {tier: high, count: 2, in: [told_chd, told_chf, told_stroke]}
+    suppresses: [isolated_chd_risk, isolated_chf_risk, isolated_stroke_risk,
+                 htn_alone]
+
+  # =====================================================================
+  # ABNORMAL — single-system high risk
+  # =====================================================================
+
+  - id: diabetes_high_risk
+    priority: 85
+    tier: abnormal
+    group: glycaemia
+    requires:
+      risk_tier_at_least: {told_diabetes: high}
+    suppresses: [prediabetes_metabolic, diabetes_moderate_risk]
+
+  - id: prediabetes_metabolic
+    priority: 70
+    tier: abnormal
+    group: glycaemia
+    requires:
+      risk_tier_at_least: {told_diabetes: moderate}
+      risk_tier_at_most:  {told_diabetes: moderate}
+    suppresses: []
+
+  - id: htn_high_risk
+    priority: 75
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      risk_tier_at_least: {told_htn: high}
+    suppresses: [htn_alone]
+
+  - id: htn_alone
+    priority: 60
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      risk_tier_at_least: {told_htn: moderate}
+      risk_tier_at_most:  {told_htn: moderate}
+    suppresses: []
+
+  - id: dyslipidemia_high_risk
+    priority: 70
+    tier: abnormal
+    group: lipids
+    requires:
+      risk_tier_at_least: {told_high_chol: high}
+    suppresses: [dyslipidemia_alone]
+
+  - id: dyslipidemia_alone
+    priority: 55
+    tier: abnormal
+    group: lipids
+    requires:
+      risk_tier_at_least: {told_high_chol: moderate}
+      risk_tier_at_most:  {told_high_chol: moderate}
+    suppresses: []
+
+  - id: isolated_chd_risk
+    priority: 80
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      risk_tier_at_least: {told_chd: high}
+    suppresses: []
+
+  - id: isolated_chf_risk
+    priority: 80
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      risk_tier_at_least: {told_chf: high}
+    suppresses: []
+
+  - id: isolated_stroke_risk
+    priority: 80
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      risk_tier_at_least: {told_stroke: high}
+    suppresses: []
+
+  # =====================================================================
+  # CONTEXT-DRIVEN — secondary prevention (P4 patch)
+  # =====================================================================
+  # Patients with established CVD (post-MI, post-stroke, known CHF) often
+  # have LOW ML risk scores because they're on full secondary-prevention
+  # therapy (statin + ACEi + BB + aspirin). The clinical message must
+  # remain "do not stop therapy" — without this cluster, well-treated CVD
+  # patients see no specific narrative and might wrongly conclude their
+  # risk is gone.
+  #
+  # Fires when has_cardiovascular_disease=true regardless of ML tier.
+  # High priority so it overrides isolated_* and *_alone clusters that
+  # would otherwise downplay the clinical reality.
+
+  - id: cvd_secondary_prevention
+    priority: 88
+    tier: abnormal
+    group: cardiovascular
+    requires:
+      context_requires:
+        has_cardiovascular_disease: true
+    suppresses: [dyslipidemia_alone, htn_alone, isolated_chd_risk,
+                 isolated_chf_risk, isolated_stroke_risk]
+
+  # =====================================================================
+  # MODERATE — multi-system moderate concern
+  # =====================================================================
+
+  - id: cardiometabolic_moderate_risk
+    priority: 65
+    tier: abnormal
+    group: cardiometabolic
+    requires:
+      any_at_least: {tier: moderate, count: 3}
+    suppresses: [htn_alone, dyslipidemia_alone, prediabetes_metabolic]
+
+  - id: diabetes_moderate_risk
+    priority: 50
+    tier: info
+    group: glycaemia
+    requires:
+      risk_tier_at_least: {told_diabetes: moderate}
+      risk_tier_at_most:  {told_diabetes: high}
+    suppresses: []
+
+  # =====================================================================
+  # NORMAL / LOW
+  # =====================================================================
+
+  - id: low_overall_risk
+    priority: 20
+    tier: normal
+    group: general
+    requires:
+      all_at_most: {tier: low}
+    suppresses: []
+
+  - id: incomplete_panel
+    priority: 5
+    tier: info
+    group: general
+    requires:
+      n_features_provided_at_most: 12
+    suppresses: []
+
+  - id: mixed_signals
+    priority: 10
+    tier: info
+    group: general
+    requires: {}        # always-eligible fallback
+    suppresses: []
