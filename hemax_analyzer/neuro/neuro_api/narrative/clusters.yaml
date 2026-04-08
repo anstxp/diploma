@@ -1,0 +1,187 @@
+# HEMAX_NEURO narrative clusters
+#
+# 8 clusters covering mental health & sleep risk constellations.
+# Priority resolves overlap; suppression prevents the user from
+# getting overwhelmed.
+#
+# Trigger conditions (same DSL as RISK):
+#   risk_tier_at_least: {target: tier_name}
+#   risk_tier_at_most:  {target: tier_name}
+#   probability_at_least: {target: 0.5}
+#   any_at_least: {tier: very_high, count: 2}
+
+clusters:
+  # =====================================================================
+  # SAFETY-CRITICAL — suicidal ideation flag
+  # =====================================================================
+  # ANY non-trivial probability of suicidal ideation gets prioritised
+  # over all else and surfaces crisis lines regardless of severity tier.
+
+  - id: suicidal_ideation_flag
+    priority: 99
+    tier: critical
+    group: safety
+    requires:
+      probability_at_least: {suicidal_ideation: 0.10}
+    suppresses: [depression_severe, depression_moderate,
+                 mixed_burnout, low_overall_risk, mixed_signals]
+
+  # =====================================================================
+  # SEVERE depression
+  # =====================================================================
+
+  - id: depression_severe
+    priority: 90
+    tier: critical
+    group: depression
+    requires:
+      risk_tier_at_least: {depression_severe: high}
+    suppresses: [depression_moderate, mixed_burnout, low_overall_risk,
+                 mixed_signals]
+
+  # =====================================================================
+  # MODERATE depression
+  # =====================================================================
+
+  - id: depression_moderate
+    priority: 70
+    tier: abnormal
+    group: depression
+    requires:
+      risk_tier_at_least: {depression_moderate: high}
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  # =====================================================================
+  # SLEEP — combined deficiency + daytime dysfunction
+  # =====================================================================
+
+  - id: sleep_disorder
+    priority: 60
+    tier: abnormal
+    group: sleep
+    # Bug fix May 2026: was `any_at_least: {tier: high, count: 2}`, which
+    # fired the SLEEP_DISORDER cluster whenever ANY two targets hit high
+    # — including depression_severe + suicidal_ideation, which is a mental
+    # health pattern, not a sleep one. Now we constrain `any_at_least`
+    # to the four genuinely-sleep-related targets via the existing `in`
+    # filter that the cluster engine already supports.
+    requires:
+      any_at_least:
+        tier: high
+        count: 2
+        in: [sleep_deficiency, daytime_dysfunction,
+             snore_high, trouble_sleeping_high]
+    suppresses: [sleep_deficiency_alone, daytime_dysfunction_alone,
+                 snore_high_alone, trouble_sleeping_alone,
+                 mixed_burnout, low_overall_risk, mixed_signals]
+
+  - id: sleep_deficiency_alone
+    priority: 50
+    tier: abnormal
+    group: sleep
+    requires:
+      risk_tier_at_least: {sleep_deficiency: high}
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  - id: daytime_dysfunction_alone
+    priority: 50
+    tier: abnormal
+    group: sleep
+    requires:
+      risk_tier_at_least: {daytime_dysfunction: high}
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  # Bug fix May 2026: v2 model added two new sleep targets (snore_high,
+  # trouble_sleeping_high) but the narrative engine never received cluster
+  # definitions for them, so they always degraded into "mixed_signals" or
+  # were entirely silent. Add explicit single-target clusters so the
+  # narrative actually surfaces these findings.
+
+  - id: snore_high_alone
+    priority: 48
+    tier: abnormal
+    group: sleep
+    requires:
+      risk_tier_at_least: {snore_high: high}
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  - id: trouble_sleeping_alone
+    priority: 48
+    tier: abnormal
+    group: sleep
+    requires:
+      risk_tier_at_least: {trouble_sleeping_high: high}
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  # =====================================================================
+  # SUBJECTIVE-DRIVEN — patterns visible only in patient-reported data
+  # =====================================================================
+  # The ML model can't see "I snore" or "I work nights" — these clusters
+  # ARE the channel that brings subjective data into the report. They
+  # have HIGH priority because witnessed apnea or chronic shift work
+  # are clinically actionable regardless of what the lab-based ML says.
+
+  - id: sleep_apnea_pattern
+    priority: 75
+    tier: abnormal
+    group: sleep
+    requires:
+      subjective_requires:
+        snoring: true
+        witnessed_apnea: true
+    suppresses: [sleep_deficiency_alone, daytime_dysfunction_alone,
+                 sleep_disorder, mixed_burnout, low_overall_risk,
+                 mixed_signals]
+
+  - id: circadian_disruption
+    priority: 55
+    tier: abnormal
+    group: sleep
+    requires:
+      subjective_requires:
+        shift_work: true
+    suppresses: [mixed_burnout, low_overall_risk, mixed_signals]
+
+  # =====================================================================
+  # MIXED burnout — moderate signals across multiple tasks
+  # =====================================================================
+
+  - id: mixed_burnout
+    priority: 40
+    tier: info
+    group: burnout
+    requires:
+      any_at_least: {tier: moderate, count: 2}
+    suppresses: [low_overall_risk, mixed_signals]
+
+  # =====================================================================
+  # LOW overall — model sees no concerning patterns
+  # =====================================================================
+
+  - id: low_overall_risk
+    priority: 20
+    tier: normal
+    group: low
+    # Bug fix May 2026: was checking only the original 5 v1 targets, so a
+    # patient with `snore_high: high` or `trouble_sleeping_high: high`
+    # could still satisfy this cluster's "everything is low" gate and
+    # be mis-labelled as a no-risk case. Now includes all 7 v2 targets.
+    requires:
+      risk_tier_at_most: {depression_moderate: low,
+                          depression_severe: low,
+                          sleep_deficiency: low,
+                          daytime_dysfunction: low,
+                          suicidal_ideation: low,
+                          snore_high: low,
+                          trouble_sleeping_high: low}
+    suppresses: [mixed_signals]
+
+  # =====================================================================
+  # FALLBACK — always-eligible if nothing else fires
+  # =====================================================================
+
+  - id: mixed_signals
+    priority: 10
+    tier: info
+    group: fallback
+    requires: {}
