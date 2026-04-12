@@ -1,0 +1,51 @@
+{
+  "depression_moderate": {
+    "prevalence": 0.08689302665206279,
+    "n_pos": 2856,
+    "n_neg": 27461,
+    "n_unknown": 2551,
+    "pos_weight": 9.615196078431373
+  },
+  "depression_severe": {
+    "prevalence": 0.03197639041012535,
+    "n_pos": 1051,
+    "n_neg": 29266,
+    "n_unknown": 2551,
+    "pos_weight": 27.845861084681257
+  },
+  "sleep_deficiency": {
+    "prevalence": 0.12811853474504076,
+    "n_pos": 4211,
+    "n_neg": 28620,
+    "n_unknown": 37,
+    "pos_weight": 6.796485395393018
+  },
+  "daytime_dysfunction": {
+    "prevalence": 0.11777412681027138,
+    "n_pos": 3871,
+    "n_neg": 13347,
+    "n_unknown": 15650,
+    "pos_weight": 3.4479462671144407
+  },
+  "suicidal_ideation": {
+    "prevalence": 0.03681392235609103,
+    "n_pos": 1210,
+    "n_neg": 29102,
+    "n_unknown": 2556,
+    "pos_weight": 24.051239669421488
+  },
+  "snore_high": {
+    "prevalence": 0.23134964098819522,
+    "n_pos": 7604,
+    "n_neg": 8138,
+    "n_unknown": 17126,
+    "pos_weight": 1.0702261967385587
+  },
+  "trouble_sleeping_high": {
+    "prevalence": 0.22413898016307654,
+    "n_pos": 7367,
+    "n_neg": 21794,
+    "n_unknown": 3707,
+    "pos_weight": 2.958327677480657
+  }
+}
