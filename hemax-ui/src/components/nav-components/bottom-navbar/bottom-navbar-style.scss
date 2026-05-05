@@ -1,0 +1,27 @@
+.bottom-navbar {
+  text-align: center;
+  background: var(--purple);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: none;
+
+  a {
+    font-size: 2.2rem;
+    padding: 1.5rem;
+    color: white;
+    flex: 1;
+
+    &:hover, &.active {
+      background: var(--dark-color);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .bottom-navbar {
+    display: flex;
+  }
+}

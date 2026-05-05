@@ -1,0 +1,154 @@
+
+.login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  min-height: calc(100vh - 18rem);
+  padding: 4rem 2rem;
+}
+
+.login-form-container form {
+  background: var(--surface);
+  border: var(--border);
+  width: 100%;
+  max-width: 48rem;
+  padding: 3.6rem 3.4rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
+}
+
+.login-form-container form h3 {
+  font-size: 2.4rem;
+  text-transform: none;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0;
+  font-weight: 600;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.login-form-container form .form-row {
+  margin-bottom: 1.4rem;
+}
+
+.login-form-container form .form-row > span {
+  display: block;
+  font-size: 1.25rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.5rem;
+  color: var(--black);
+  text-transform: none;
+  letter-spacing: 0.02rem;
+  font-weight: 500;
+}
+
+.login-form-container form .box {
+  width: 100%;
+  margin: 0.3rem 0;
+  font-size: 1.5rem;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 1.05rem 1.3rem;
+  color: var(--black);
+  text-transform: none;
+  background: var(--surface);
+  font-family: inherit;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+  &:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 .3rem var(--purple-soft);
+  }
+}
+
+.login-form-container form select.box {
+  appearance: none;
+  background: var(--surface) url('data:image/svg+xml;utf8,<svg fill="%231B263B" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 1.1rem top 50%;
+  padding-right: 3.2rem;
+}
+
+.login-form-container form .btn {
+  width: 100%;
+  text-align: center;
+  margin: 1.8rem 0 0.5rem;
+  padding: 1.15rem 2.6rem;
+  font-size: 1.55rem;
+  letter-spacing: 0.03rem;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.login-form-container form p {
+  padding-top: 1.6rem;
+  color: var(--light-color);
+  font-size: 1.3rem;
+  text-align: center;
+  text-transform: none;
+}
+
+.login-form-container form p a {
+  color: var(--purple);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: .1rem solid transparent;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-bottom-color: var(--purple);
+  }
+}
+
+.demo-block {
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: var(--border);
+  text-align: center;
+
+  .demo-title {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--light-color);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+
+  .light-button {
+    margin: 0.2rem 0.3rem;
+    cursor: pointer;
+    background: var(--surface);
+    color: var(--black);
+    text-transform: lowercase;
+    padding: 0.7rem 1.4rem;
+    border: var(--border-strong);
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-family: inherit;
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+
+    &:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-soft);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .login-form-container {
+    padding: 2rem 1.2rem;
+  }
+  .login-form-container form {
+    padding: 2.4rem 1.8rem;
+    border-radius: var(--radius);
+  }
+}
