@@ -1,0 +1,114 @@
+{
+  "model_summary": {
+    "best_epoch": 18,
+    "args": {
+      "epochs": 20,
+      "bs": 32,
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "patience": 5,
+      "num_workers": 2,
+      "no_pretrained": false,
+      "device": "mps"
+    },
+    "accuracy": 0.4697368421052632,
+    "macro_f1": 0.3843727211743942,
+    "macro_auc": 0.8792134015763644
+  },
+  "calibration": {
+    "temperature": 1.6697089672088623,
+    "isotonic": {},
+    "production_strategy": "temperature_only",
+    "classes": [
+      "akiec",
+      "bcc",
+      "bkl",
+      "df",
+      "mel",
+      "nv",
+      "vasc"
+    ],
+    "raw_ece": 0.201543190183216,
+    "temperature_ece": 0.060086567837156754,
+    "isotonic_ece": 0.06610624196105881,
+    "raw_accuracy": 0.4697368421052632,
+    "temperature_accuracy": 0.4697368421052632,
+    "isotonic_accuracy": 0.7328947368421053,
+    "production_ece": 0.060086567837156754,
+    "per_class_ece": {
+      "raw": {
+        "akiec": 0.09328433356100792,
+        "bcc": 0.04343481114391532,
+        "bkl": 0.06865816386416555,
+        "df": 0.06923418236210158,
+        "mel": 0.12597871635746405,
+        "nv": 0.4345010994737477,
+        "vasc": 0.0364169283279855
+      },
+      "temperature": {
+        "akiec": 0.09554650819321212,
+        "bcc": 0.04921998803405777,
+        "bkl": 0.08831501795273078,
+        "df": 0.07910116937403616,
+        "mel": 0.1047534559412222,
+        "nv": 0.46534545109362196,
+        "vasc": 0.04886444485746323
+      },
+      "isotonic": {
+        "akiec": 0.019733399081681122,
+        "bcc": 0.018433849803343613,
+        "bkl": 0.037604631106124116,
+        "df": 0.003202308876145827,
+        "mel": 0.03634524046884555,
+        "nv": 0.07853610705780358,
+        "vasc": 0.006839167560007665
+      }
+    },
+    "n_val": 1481,
+    "n_test": 1520
+  },
+  "rows": [
+    {
+      "class_code": "akiec",
+      "label_ua": "Actinic keratoses (akiec)",
+      "severity": "high",
+      "auc": 0.9289079822616408
+    },
+    {
+      "class_code": "bcc",
+      "label_ua": "Basal cell carcinoma (bcc)",
+      "severity": "high",
+      "auc": 0.924160249303329
+    },
+    {
+      "class_code": "bkl",
+      "label_ua": "Benign keratosis (bkl)",
+      "severity": "low",
+      "auc": 0.7633259595315761
+    },
+    {
+      "class_code": "df",
+      "label_ua": "Dermatofibroma (df)",
+      "severity": "low",
+      "auc": 0.862001487221635
+    },
+    {
+      "class_code": "mel",
+      "label_ua": "Меланома (mel)",
+      "severity": "critical",
+      "auc": 0.7991222390100008
+    },
+    {
+      "class_code": "nv",
+      "label_ua": "Melanocytic nevi (nv)",
+      "severity": "low",
+      "auc": 0.8916429088961693
+    },
+    {
+      "class_code": "vasc",
+      "label_ua": "Судинні ушкодж. (vasc)",
+      "severity": "medium",
+      "auc": 0.9853329848102002
+    }
+  ]
+}

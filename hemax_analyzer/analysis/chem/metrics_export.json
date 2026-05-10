@@ -1,0 +1,507 @@
+{
+  "inventory": {
+    "n_labs": 36,
+    "n_signals_total": 31,
+    "n_signals_clinical": 30,
+    "n_signals_data_quality": 1,
+    "n_clusters": 48,
+    "labs": [
+      "a1c",
+      "albumin",
+      "alp",
+      "alt",
+      "amylase",
+      "ast",
+      "bicarbonate",
+      "bilirubin_direct",
+      "bilirubin_total",
+      "bun",
+      "calcium",
+      "chloride",
+      "ck",
+      "creatinine",
+      "crp",
+      "egfr",
+      "ferritin",
+      "ggt",
+      "glucose",
+      "hdl",
+      "iron",
+      "ldh",
+      "ldl",
+      "lipase",
+      "magnesium",
+      "phosphate",
+      "potassium",
+      "sodium",
+      "tchol",
+      "tibc",
+      "total_protein",
+      "trigly",
+      "tsat",
+      "urea",
+      "uric_acid",
+      "vitd_25oh"
+    ],
+    "signals": [
+      "atherogenic_dyslipidemia_pattern",
+      "bicarbonate_high",
+      "bicarbonate_low",
+      "bilirubin_high",
+      "chloride_high",
+      "chloride_low",
+      "creatinine_high",
+      "crp_high",
+      "egfr_low",
+      "ferritin_high_possible_inflammation",
+      "glucose_diabetes_range",
+      "glucose_ifg_range",
+      "high_tsat",
+      "hyperkalemia",
+      "hypernatremia",
+      "hypertriglyceridemia",
+      "hypokalemia",
+      "hyponatremia",
+      "iron_deficiency_likely",
+      "low_hdl",
+      "low_tsat",
+      "missing_core_chem",
+      "non_hdl_high",
+      "severe_hypoglycemia",
+      "tchol_high",
+      "tg_hdl_ratio_high",
+      "transaminitis",
+      "uric_acid_high",
+      "vitd_deficiency",
+      "vitd_high",
+      "vitd_insufficiency"
+    ],
+    "clusters_by_tier": {
+      "abnormal": 30,
+      "critical": 7,
+      "info": 2,
+      "minor": 8,
+      "normal": 1
+    },
+    "clusters_by_group": {
+      "glycaemia": 6,
+      "iron": 5,
+      "lipids": 7,
+      "special": 4,
+      "minerals": 5,
+      "general": 2,
+      "liver": 5,
+      "electrolytes": 9,
+      "kidney": 3,
+      "inflammation": 2
+    }
+  },
+  "battery_results": [
+    {
+      "name": "T2DM (декомпенсований)",
+      "short": "T2DM",
+      "signals": [
+        "glucose_diabetes_range",
+        "a1c_diabetes_range",
+        "hypertriglyceridemia",
+        "atherogenic_dyslipidemia_pattern",
+        "low_hdl",
+        "tg_hdl_ratio_high",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "glucose_diabetes_range",
+          "medium"
+        ],
+        [
+          "a1c_diabetes_range",
+          "high"
+        ],
+        [
+          "hypertriglyceridemia",
+          "medium"
+        ],
+        [
+          "atherogenic_dyslipidemia_pattern",
+          "low"
+        ],
+        [
+          "low_hdl",
+          "low"
+        ],
+        [
+          "tg_hdl_ratio_high",
+          "medium"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Преддіабет + метаб. синдром",
+      "short": "PreDM",
+      "signals": [
+        "a1c_prediabetes_range",
+        "glucose_ifg_range",
+        "hypertriglyceridemia",
+        "atherogenic_dyslipidemia_pattern",
+        "low_hdl",
+        "non_hdl_high",
+        "tchol_high",
+        "tg_hdl_ratio_high",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "a1c_prediabetes_range",
+          "low"
+        ],
+        [
+          "glucose_ifg_range",
+          "low"
+        ],
+        [
+          "hypertriglyceridemia",
+          "medium"
+        ],
+        [
+          "atherogenic_dyslipidemia_pattern",
+          "low"
+        ],
+        [
+          "low_hdl",
+          "low"
+        ],
+        [
+          "non_hdl_high",
+          "medium"
+        ],
+        [
+          "tchol_high",
+          "medium"
+        ],
+        [
+          "tg_hdl_ratio_high",
+          "low"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "ХХН-4 (тяжке порушення нирок)",
+      "short": "CKD-4",
+      "signals": [
+        "hyperkalemia",
+        "egfr_low",
+        "creatinine_high",
+        "bicarbonate_low",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "hyperkalemia",
+          "low"
+        ],
+        [
+          "egfr_low",
+          "high"
+        ],
+        [
+          "creatinine_high",
+          "high"
+        ],
+        [
+          "bicarbonate_low",
+          "low"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [
+        "kidney_function_reduced"
+      ],
+      "rec_count": 2
+    },
+    {
+      "name": "Гострий гепатит (hepatocellular)",
+      "short": "Hep-acute",
+      "signals": [
+        "bilirubin_high",
+        "transaminitis",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "bilirubin_high",
+          "high"
+        ],
+        [
+          "transaminitis",
+          "high"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Холестатичне ураження печінки",
+      "short": "Hep-cholest",
+      "signals": [
+        "bilirubin_high",
+        "transaminitis",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "bilirubin_high",
+          "high"
+        ],
+        [
+          "transaminitis",
+          "medium"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Тяжка дисліпідемія (FH-like)",
+      "short": "Dyslipid",
+      "signals": [
+        "hypertriglyceridemia",
+        "atherogenic_dyslipidemia_pattern",
+        "low_hdl",
+        "non_hdl_high",
+        "tchol_high",
+        "tg_hdl_ratio_high",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "hypertriglyceridemia",
+          "low"
+        ],
+        [
+          "atherogenic_dyslipidemia_pattern",
+          "low"
+        ],
+        [
+          "low_hdl",
+          "low"
+        ],
+        [
+          "non_hdl_high",
+          "medium"
+        ],
+        [
+          "tchol_high",
+          "medium"
+        ],
+        [
+          "tg_hdl_ratio_high",
+          "low"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [
+        "fh_like_ldl_ge190"
+      ],
+      "rec_count": 2
+    },
+    {
+      "name": "Тяжка гіпертригліцеридемія",
+      "short": "TG-severe",
+      "signals": [
+        "glucose_diabetes_range",
+        "hypertriglyceridemia",
+        "atherogenic_dyslipidemia_pattern",
+        "low_hdl",
+        "non_hdl_high",
+        "tchol_high",
+        "tg_hdl_ratio_high",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "glucose_diabetes_range",
+          "medium"
+        ],
+        [
+          "hypertriglyceridemia",
+          "high"
+        ],
+        [
+          "atherogenic_dyslipidemia_pattern",
+          "low"
+        ],
+        [
+          "low_hdl",
+          "low"
+        ],
+        [
+          "non_hdl_high",
+          "medium"
+        ],
+        [
+          "tchol_high",
+          "medium"
+        ],
+        [
+          "tg_hdl_ratio_high",
+          "medium"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [
+        "tg_very_high_pancreatitis_risk"
+      ],
+      "rec_count": 2
+    },
+    {
+      "name": "Гіперкаліємія + ацидоз",
+      "short": "HyperK",
+      "signals": [
+        "hyperkalemia",
+        "egfr_low",
+        "creatinine_high",
+        "bicarbonate_low",
+        "chloride_high",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "hyperkalemia",
+          "high"
+        ],
+        [
+          "egfr_low",
+          "medium"
+        ],
+        [
+          "creatinine_high",
+          "medium"
+        ],
+        [
+          "bicarbonate_low",
+          "medium"
+        ],
+        [
+          "chloride_high",
+          "low"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [
+        "kidney_function_reduced"
+      ],
+      "rec_count": 2
+    },
+    {
+      "name": "Тяжка гіпонатріємія",
+      "short": "HypoNa",
+      "signals": [
+        "hyponatremia",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "hyponatremia",
+          "high"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Залізодефіцитна анемія",
+      "short": "IronDef",
+      "signals": [
+        "iron_deficiency_likely",
+        "low_tsat",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "iron_deficiency_likely",
+          "medium"
+        ],
+        [
+          "low_tsat",
+          "medium"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Запалення / хронічна хвороба",
+      "short": "Inflamm",
+      "signals": [
+        "crp_high",
+        "ferritin_high_possible_inflammation",
+        "missing_core_chem"
+      ],
+      "signal_severities": [
+        [
+          "crp_high",
+          "medium"
+        ],
+        [
+          "ferritin_high_possible_inflammation",
+          "low"
+        ],
+        [
+          "missing_core_chem",
+          "low"
+        ]
+      ],
+      "clusters": [],
+      "rec_count": 2
+    },
+    {
+      "name": "Здоровий пацієнт (контроль)",
+      "short": "Healthy",
+      "signals": [],
+      "signal_severities": [],
+      "clusters": [],
+      "rec_count": 2
+    }
+  ]
+}
