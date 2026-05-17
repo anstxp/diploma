@@ -1,0 +1,94 @@
+version: '3.9'
+
+# =====================================================================
+# HEMAX Full Stack — 5 Python services + MSSQL + C# Backend
+# =====================================================================
+# Usage: docker compose -f docker-compose.full.yml up -d
+#
+# This is an EXTENSION of the existing docker-compose.yml (which already
+# has the 5 Python services). Use this if you want backend + DB also in
+# Docker. Otherwise, just run `dotnet run` locally.
+# =====================================================================
+
+services:
+  # ─── MSSQL Server ─────────────────────────────────────────────────
+  hemax-mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64  # required on M1/M2 Macs
+    container_name: hemax-mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong@Pass123"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - hemax-mssql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong@Pass123' -Q 'SELECT 1' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    networks:
+      - hemax-network
+
+  # ─── HEMAX C# Backend ─────────────────────────────────────────────
+  hemax-backend:
+    build:
+      context: ./hemax_backend
+      dockerfile: Dockerfile
+    container_name: hemax-backend
+    depends_on:
+      hemax-mssql:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:5000"
+
+      # Connection — uses container name on docker network
+      ConnectionStrings__HemaxDb: "Server=hemax-mssql,1433;Database=HemaxDb;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;Encrypt=False;"
+
+      # JWT
+      Jwt__Key: "CHANGE_THIS_TO_A_STRONG_RANDOM_64_CHAR_KEY_FOR_PRODUCTION_USE_OPENSSL"
+      Jwt__Issuer: "hemax-backend"
+      Jwt__Audience: "hemax-clients"
+      Jwt__AccessTokenExpirationMinutes: "15"
+      Jwt__RefreshTokenExpirationDays: "7"
+
+      # HEMAX Python services — use container names
+      Hemax__CbcBaseUrl:   "http://cbc:8000"
+      Hemax__ChemBaseUrl:  "http://chem:8000"
+      Hemax__RiskBaseUrl:  "http://hemax_risk:8000"
+      Hemax__NeuroBaseUrl: "http://hemax_neuro_v02:8000"
+      Hemax__DermaBaseUrl: "http://hemax_derma_v01:8000"
+
+      # Database
+      Database__AutoMigrate: "true"
+      Database__Seed: "true"
+
+      # Seed
+      Seed__AdminEmail: "admin@hemax.local"
+      Seed__AdminPassword: "Admin#12345"
+      Seed__CreateSampleData: "true"
+
+      # SMTP off in dev
+      Smtp__Enabled: "false"
+    ports:
+      - "5000:5000"
+    volumes:
+      - hemax-uploads:/app/uploads
+      - hemax-logs:/app/logs
+    networks:
+      - hemax-network
+
+volumes:
+  hemax-mssql-data:
+  hemax-uploads:
+  hemax-logs:
+
+networks:
+  hemax-network:
+    external: true
+    # Uses the network from the existing docker-compose.yml
+    # If running standalone, change to: driver: bridge

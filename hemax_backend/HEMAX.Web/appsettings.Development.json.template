@@ -1,0 +1,29 @@
+{
+  "_README": "Local development overrides. DO NOT COMMIT this file. Add appsettings.Development.json to your .gitignore.",
+  "ConnectionStrings": {
+    "HemaxDb": "Server=localhost,1433;Database=HemaxDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+  },
+  "Jwt": {
+    "Key": "DEV_ONLY_replace_with_a_random_32+_char_string_for_HS256_signing"
+  },
+  "Encryption": {
+    "MasterPassphrase": "DEV_ONLY_replace_with_random_passphrase_min_32_chars_AES256_GCM",
+    "KeySalt": "DEV_ONLY_replace_with_random_salt_for_PBKDF2"
+  },
+  "FileStorage": {
+    "Provider": "LocalDisk",
+    "AzureBlob": {
+      "ConnectionString": ""
+    }
+  },
+  "App": {
+    "BaseUrl": "https://localhost:5001",
+    "FrontendBaseUrl": "http://localhost:8080"
+  },
+  "Seed": {
+    "AdminPassword": "DEV_ONLY_Admin#12345_change_in_prod"
+  },
+  "FeatureFlags": {
+    "EnableEncryptionDiagnostics": true
+  }
+}

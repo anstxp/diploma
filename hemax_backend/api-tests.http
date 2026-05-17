@@ -1,0 +1,315 @@
+### HEMAX Backend — REST Client tests
+### Save as .http and run with VS Code REST Client extension or IntelliJ
+
+@host = http://localhost:5000
+@adminEmail = admin@hemax.local
+@adminPassword = Admin#12345
+@doctorEmail = doctor@hemax.local
+@doctorPassword = Doctor#12345
+@patientEmail = patient@hemax.local
+@patientPassword = Patient#12345
+
+# ─────────────────────────────────────────────────────────────────
+# 1. Login as patient — отримати access token
+# ─────────────────────────────────────────────────────────────────
+
+# @name patientLogin
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{patientEmail}}",
+  "password": "{{patientPassword}}"
+}
+
+###
+@patientToken = {{patientLogin.response.body.accessToken}}
+@patientRefresh = {{patientLogin.response.body.refreshToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 2. Get current user
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/auth/me
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 3. Submit CBC analysis
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/analyses/Cbc?lang=uk
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "payloadJson": "{\"sex\":\"male\",\"age\":40,\"wbc\":7.2,\"hgb\":13.5,\"hct\":40.5,\"plt\":250,\"mcv\":88,\"mch\":29,\"mchc\":33,\"rdw\":12.8,\"lang\":\"uk\"}"
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 4. Submit CHEM (pre-diabetic profile)
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/analyses/Chem?lang=uk
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "payloadJson": "{\"sex\":\"male\",\"age\":40,\"labs\":{\"glucose\":118,\"a1c\":6.2,\"tchol\":240,\"hdl\":35,\"ldl\":160,\"trigly\":280,\"alt\":45,\"ast\":38,\"crp\":4.5,\"creatinine\":0.95},\"lang\":\"uk\"}"
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 5. Get analysis history
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/analyses?page=1&pageSize=20
+Authorization: Bearer {{patientToken}}
+
+###
+GET {{host}}/api/analyses?type=Cbc
+Authorization: Bearer {{patientToken}}
+
+###
+GET {{host}}/api/analyses?minSeverity=Moderate
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 6. Health timeline (HGB over time)
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/analyses/timeline?type=Cbc&field=hgb
+Authorization: Bearer {{patientToken}}
+
+###
+GET {{host}}/api/analyses/timeline?type=Chem&field=glucose
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 7. Compare two analyses (replace IDs)
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/analyses/compare?olderId={OLDER_ID}&newerId={NEWER_ID}
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 8. Blog — create post
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/blog
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "title": "Як я навчився боротися зі стресом",
+  "content": "Вже декілька років я працюю над собою через медитацію і фізичні вправи. Поділюсь що допомогло...",
+  "tags": ["mental-health", "fitness", "lifestyle"]
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 9. Blog — get feed
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/blog
+Authorization: Bearer {{patientToken}}
+
+###
+GET {{host}}/api/blog?tag=fitness
+
+###
+GET {{host}}/api/blog?search=стресом
+
+# ─────────────────────────────────────────────────────────────────
+# 10. Blog — like a post
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/blog/{POST_ID}/like
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 11. Blog — add comment
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/blog/{POST_ID}/comments
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "content": "Дуже корисний пост, дякую!"
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 12. DOCTOR — login + invite patient
+# ─────────────────────────────────────────────────────────────────
+
+# @name doctorLogin
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{doctorEmail}}",
+  "password": "{{doctorPassword}}"
+}
+
+###
+@doctorToken = {{doctorLogin.response.body.accessToken}}
+
+POST {{host}}/api/doctors/invite
+Authorization: Bearer {{doctorToken}}
+Content-Type: application/json
+
+{
+  "patientEmail": "{{patientEmail}}",
+  "inviteMessage": "Доброго дня! Я ваш сімейний лікар. Хочу мати доступ до ваших аналізів."
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 13. PATIENT — get notifications, see doctor request
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/notifications
+Authorization: Bearer {{patientToken}}
+
+###
+GET {{host}}/api/notifications/unread-count
+Authorization: Bearer {{patientToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 14. PATIENT — accept doctor request
+# ─────────────────────────────────────────────────────────────────
+
+# Get my doctors (включаючи pending)
+GET {{host}}/api/users/my-doctors
+Authorization: Bearer {{patientToken}}
+
+###
+# Accept (substitute LINK_ID from above)
+POST {{host}}/api/doctors/links/{LINK_ID}/respond
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "accept": true,
+  "note": "Дякую за запит, приймаю."
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 15. DOCTOR — view patient analyses
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/doctors/my-patients?status=Accepted
+Authorization: Bearer {{doctorToken}}
+
+###
+# View patient's analyses
+GET {{host}}/api/analyses?userId={PATIENT_USER_ID}
+Authorization: Bearer {{doctorToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 16. DOCTOR — annotate analysis
+# ─────────────────────────────────────────────────────────────────
+
+PATCH {{host}}/api/analyses/{ANALYSIS_ID}/annotate
+Authorization: Bearer {{doctorToken}}
+Content-Type: application/json
+
+{
+  "note": "Спостерігаю мікроцитарну анемію. Рекомендую: феритин, витамін B12, фолат, повторити CBC через 6 тижнів після препаратів заліза."
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 17. ADMIN — login
+# ─────────────────────────────────────────────────────────────────
+
+# @name adminLogin
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{adminEmail}}",
+  "password": "{{adminPassword}}"
+}
+
+###
+@adminToken = {{adminLogin.response.body.accessToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 18. ADMIN — list all users
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/admin/users
+Authorization: Bearer {{adminToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 19. ADMIN — delete user's blog post (моderation)
+# ─────────────────────────────────────────────────────────────────
+
+DELETE {{host}}/api/blog/{POST_ID}
+Authorization: Bearer {{adminToken}}
+
+###
+# View deleted posts
+GET {{host}}/api/blog/deleted
+Authorization: Bearer {{adminToken}}
+
+###
+# Recover post
+POST {{host}}/api/blog/{POST_ID}/recover
+Authorization: Bearer {{adminToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 20. ADMIN — audit log
+# ─────────────────────────────────────────────────────────────────
+
+GET {{host}}/api/admin/audit-log
+Authorization: Bearer {{adminToken}}
+
+###
+GET {{host}}/api/admin/audit-log?action=BlogPostDeleted
+Authorization: Bearer {{adminToken}}
+
+# ─────────────────────────────────────────────────────────────────
+# 21. Refresh token
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{patientRefresh}}"
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 22. Logout
+# ─────────────────────────────────────────────────────────────────
+
+POST {{host}}/api/auth/logout
+Authorization: Bearer {{patientToken}}
+Content-Type: application/json
+
+{
+  "refreshToken": "{{patientRefresh}}"
+}
+
+# ─────────────────────────────────────────────────────────────────
+# 23. ENCRYPTION DIAGNOSTICS — admin only, demo for defense
+# ─────────────────────────────────────────────────────────────────
+
+###
+# 23a. Encrypt round-trip — same plaintext goes in, comes out.
+POST {{host}}/api/diagnostics/encryption/roundtrip
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "plaintext": "Patient HGB 9.5 g/dL — iron deficiency anemia"
+}
+
+###
+# 23b. Nonce uniqueness — same input, three DIFFERENT ciphertexts.
+GET {{host}}/api/diagnostics/encryption/nonce-uniqueness-demo?plaintext=Glucose+118
+Authorization: Bearer {{adminToken}}
+
+###
+# 23c. Verify stored encryption — proves PHI is ciphertext in DB.
+# Replace {analysisId} with a real one from your history.
+GET {{host}}/api/diagnostics/encryption/verify-stored/00000000-0000-0000-0000-000000000000
+Authorization: Bearer {{adminToken}}

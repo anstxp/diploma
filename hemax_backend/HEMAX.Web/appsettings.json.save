@@ -1,0 +1,67 @@
+{
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information",
+        "Microsoft.EntityFrameworkCore.Database.Command": "Warning",
+        "System.Net.Http.HttpClient": "Warning"
+      }
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "HemaxDb": "Server=localhost,1433;Database=HemaxDb;User Id=sa;Password=YourStrong@Pass123;TrustServerCertificate=True;Encrypt=False;"
+  },
+  "Database": {
+    "AutoMigrate": true,
+    "Seed": true
+  },
+  "Jwt": {
+    "Key": "REPLACE_WITH_RANDOM_64_CHAR_SECRET_AT_LEAST_32_CHARS_LONG_FOR_HS256",
+    "Issuer": "hemax-backend",
+    "Audience": "hemax-clients",
+    "AccessTokenExpirationMinutes": 15,
+    "RefreshTokenExpirationDays": 7
+  },
+  "Encryption": {
+    "MasterPassphrase": "REPLACE_WITH_LONG_RANDOM_PASSPHRASE_AT_LEAST_32_CHARS_FOR_PHI_AES256_GCM",
+    "KeySalt": "REPLACE_WITH_RANDOM_SALT_STRING_FOR_KEY_DERIVATION_PBKDF2"
+  },
+  "Hemax": {
+    "CbcBaseUrl":   "http://localhost:8001",
+    "ChemBaseUrl":  "http://localhost:8101",
+    "RiskBaseUrl":  "http://localhost:8002",
+    "NeuroBaseUrl": "http://localhost:8003",
+    "DermaBaseUrl": "http://localhost:8004"
+  },
+  "App": {
+    "BaseUrl": "https://localhost:5001"
+  },
+  "Smtp": {
+    "Enabled": false,
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "UseSsl": true,
+    "From": "noreply@hemax.local",
+    "FromName": "HEMAX",
+    "User": "",
+    "Password": ""
+  },
+  "FileStorage": {
+    "Provider": "LocalDisk",
+    "Root": "./uploads",
+    "PublicBaseUrl": "/files",
+    "AzureBlob": {
+      "ConnectionString": "REPLACE_WITH_AZURE_STORAGE_CONNECTION_STRING_FROM_PORTAL",
+      "ContainerName": "hemax-files",
+      "SasExpiryHours": 1
+    }
+  },
+  "Seed": {
+    "AdminEmail": "admin@hemax.local",
+    "AdminPassword": "Admin#12345",
+    "CreateSampleData": true
+  }
+}

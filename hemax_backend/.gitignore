@@ -1,0 +1,59 @@
+# Build output
+bin/
+obj/
+out/
+publish/
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+logs/
+*.log
+
+# Uploads (avatars, etc)
+uploads/
+HEMAX.Web/uploads/
+
+# User secrets
+*.pfx
+secrets.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Local appsettings overrides — never commit secrets here.
+# appsettings.json itself has empty defaults; real values come from
+# env vars in prod or from Development.json locally.
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+# Test results
+[Tt]est[Rr]esult*/
+TestResults/
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+project.lock.json
